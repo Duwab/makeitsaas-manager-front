@@ -19,6 +19,7 @@ import { LayoutModule } from 'app/layout/layout.module';
 import { SampleModule } from 'app/main/sample/sample.module';
 import { LoginModule } from 'app/main/authentication/login/login.module';
 import { Login2Module } from 'app/main/authentication/login-2/login-2.module';
+import { ProjectModule } from './main/project/project.module';
 
 const appRoutes: Routes = [
     {
@@ -35,7 +36,7 @@ const appRoutes: Routes = [
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
-        RouterModule.forRoot(appRoutes),
+        RouterModule.forRoot(appRoutes, { enableTracing: true }),
 
         TranslateModule.forRoot(),
 
@@ -57,7 +58,8 @@ const appRoutes: Routes = [
         LayoutModule,
         SampleModule,
         LoginModule,
-        Login2Module
+        Login2Module,
+        ProjectModule
     ],
     bootstrap   : [
         AppComponent
