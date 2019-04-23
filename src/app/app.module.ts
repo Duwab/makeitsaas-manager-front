@@ -62,6 +62,8 @@ const appRoutes: Routes = [
         Login2Module,
         ProjectModule
     ],
+    providers: [
+    ],
     bootstrap   : [
         AppComponent
     ]

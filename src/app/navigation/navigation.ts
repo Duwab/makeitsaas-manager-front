@@ -13,14 +13,14 @@ export const navigation: FuseNavigation[] = [
                 title: 'Analytics',
                 type : 'item',
                 icon : 'multiline_chart',
-                url  : '/dashboards/analytics'
+                url  : '/projects/2/dashboards/analytics'
             },
             {
                 id   : 'project',
                 title: 'Project',
                 type : 'item',
                 icon : 'bar_chart',
-                url  : '/dashboards/project'
+                url  : '/projects/1/dashboards/project'
             }
         ]
     },
@@ -55,7 +55,7 @@ export const navigation: FuseNavigation[] = [
                 title    : 'Overview',
                 type     : 'item',
                 icon     : 'assessment',
-                url      : '/environments/list',
+                url      : '/projects/:project_id/environments/list',
             },
             {
                 id       : 'detail',
@@ -67,19 +67,19 @@ export const navigation: FuseNavigation[] = [
                         id       : 'prod',
                         title    : 'Prod',
                         type     : 'item',
-                        url      : '/environments/1',
+                        url      : '/projects/1/environments/1',
                     },
                     {
                         id       : 'test',
                         title    : 'Test',
                         type     : 'item',
-                        url      : '/environments/2',
+                        url      : '/projects/1/environments/2',
                     },
                     {
                         id       : 'dev',
                         title    : 'Dev',
                         type     : 'item',
-                        url      : '/environments/3',
+                        url      : '/projects/1/environments/3',
                     },
                 ]
             },

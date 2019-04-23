@@ -31,7 +31,6 @@ export class EnvironemntArchitectureComponent implements OnInit
      */
     ngOnInit(): void
     {
-        console.log('on init');
     }
 
     // -----------------------------------------------------------------------------------------------------

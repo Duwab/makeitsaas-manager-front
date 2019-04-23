@@ -14,6 +14,7 @@ import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.
 import { navigation } from 'app/navigation/navigation';
 import { locale as navigationEnglish } from 'app/navigation/i18n/en';
 import { locale as navigationTurkish } from 'app/navigation/i18n/tr';
+import { NavigationProjectService } from './main/project/services/navigation-project.service';
 
 @Component({
     selector   : 'app',
@@ -32,6 +33,7 @@ export class AppComponent implements OnInit, OnDestroy
      * Constructor
      *
      * @param {DOCUMENT} document
+     * @param {NavigationProjectService} navigationProjectService
      * @param {FuseConfigService} _fuseConfigService
      * @param {FuseNavigationService} _fuseNavigationService
      * @param {FuseSidebarService} _fuseSidebarService
@@ -42,6 +44,7 @@ export class AppComponent implements OnInit, OnDestroy
      */
     constructor(
         @Inject(DOCUMENT) private document: any,
+        private navigationProjectService: NavigationProjectService,
         private _fuseConfigService: FuseConfigService,
         private _fuseNavigationService: FuseNavigationService,
         private _fuseSidebarService: FuseSidebarService,
@@ -53,6 +56,8 @@ export class AppComponent implements OnInit, OnDestroy
     {
         // Get default navigation
         this.navigation = navigation;
+
+        this.navigationProjectService.onProject().subscribe(project => this.onProjectChange(project));
 
         // Register the navigation to the service
         this._fuseNavigationService.register('main', this.navigation);
@@ -179,4 +184,10 @@ export class AppComponent implements OnInit, OnDestroy
     {
         this._fuseSidebarService.getSidebar(key).toggleOpen();
     }
+
+    // -----------------------------------------------------------------------------------------------------
+    // @ Private methods
+    // -----------------------------------------------------------------------------------------------------
+
+    onProjectChange(project) {}
 }
