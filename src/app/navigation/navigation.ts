@@ -30,10 +30,10 @@ export const navigation: FuseNavigation[] = [
         type     : 'group',
         children : [
             {
-                id       : 'overview',
-                title    : 'Overview',
+                id       : 'global',
+                title    : 'Global',
                 type     : 'item',
-                icon     : 'assessment',
+                icon     : 'device_hub',
                 url      : '/sample',
             },
             {
@@ -55,7 +55,7 @@ export const navigation: FuseNavigation[] = [
                 title    : 'Overview',
                 type     : 'item',
                 icon     : 'assessment',
-                url      : '/sample',
+                url      : '/environments/list',
             },
             {
                 id       : 'detail',
@@ -67,19 +67,19 @@ export const navigation: FuseNavigation[] = [
                         id       : 'prod',
                         title    : 'Prod',
                         type     : 'item',
-                        url      : '/sample',
+                        url      : '/environments/1',
                     },
                     {
                         id       : 'test',
                         title    : 'Test',
                         type     : 'item',
-                        url      : '/sample',
+                        url      : '/environments/2',
                     },
                     {
                         id       : 'dev',
                         title    : 'Dev',
                         type     : 'item',
-                        url      : '/sample',
+                        url      : '/environments/3',
                     },
                 ]
             },
