@@ -12,7 +12,6 @@ const routes = [
     {
         path        : ':environment_id',
         loadChildren: './modules/detail/detail.module#DetailModule',
-        //runGuardsAndResolvers: () => false,
     }
 ];
 
@@ -20,6 +19,8 @@ const routes = [
     imports     : [
         RouterModule.forChild(routes),
         // FuseSharedModule
+    ],
+    providers: [
     ]
 })
 export class EnvironmentsModule

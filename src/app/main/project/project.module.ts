@@ -14,7 +14,7 @@ const routes = [
     },
     {
         path        : 'environments',
-        loadChildren: './environments/environments.module#EnvironmentsModule'
+        loadChildren: './environments/environments.module#EnvironmentsModule',
     }
 ];
 

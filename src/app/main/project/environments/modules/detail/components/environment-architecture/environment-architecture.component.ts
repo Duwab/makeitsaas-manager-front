@@ -1,29 +1,23 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { fuseAnimations } from '@fuse/animations';
 
-import { ListService } from './list.service';
-import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
-
 @Component({
-    selector     : 'environment-detail',
-    templateUrl  : './list.component.html',
-    styleUrls    : ['./list.component.scss'],
+    selector     : 'environment-architecture',
+    templateUrl  : './environment-architecture.component.html',
+    styleUrls    : ['./environment-architecture.component.scss'],
     encapsulation: ViewEncapsulation.None,
     animations   : fuseAnimations
 })
-export class ListComponent implements OnInit
+export class EnvironemntArchitectureComponent implements OnInit
 {
+    @Input() environment: {id: string|number};
 
     /**
      * Constructor
      *
-     * @param {FuseSidebarService} _fuseSidebarService
-     * @param {ListService} _detailService
      */
     constructor(
-        private _fuseSidebarService: FuseSidebarService,
-        private _detailService: ListService
     )
     {
     }
@@ -37,19 +31,11 @@ export class ListComponent implements OnInit
      */
     ngOnInit(): void
     {
+        console.log('on init');
     }
 
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
 
-    /**
-     * Toggle the sidebar
-     *
-     * @param name
-     */
-    toggleSidebar(name): void
-    {
-        this._fuseSidebarService.getSidebar(name).toggleOpen();
-    }
 }

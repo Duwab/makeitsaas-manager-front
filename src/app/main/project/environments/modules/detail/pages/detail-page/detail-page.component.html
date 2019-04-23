@@ -1,0 +1,45 @@
+<div class="page-layout simple tabbed">
+
+    <!-- HEADER -->
+    <div class="header accent p-24">
+        <h2 *ngIf="environment?.id">Detail of environment({{environment.id}})</h2>
+        <h2 *ngIf="!environment?.id">-</h2>
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content">
+        <mat-spinner *ngIf="!environment" [diameter]="40" style="margin: 20px auto"></mat-spinner>
+
+        <mat-tab-group dynamicHeight="true" *ngIf="environment">
+
+            <mat-tab label="Architecture">
+                <div class="p-24">
+                    <environment-architecture [environment]="environment"></environment-architecture>
+                </div>
+            </mat-tab>
+
+            <mat-tab label="Settings">
+                <div class="p-24">
+                    <p>Settings</p>
+                </div>
+            </mat-tab>
+
+            <mat-tab label="History">
+                <div class="p-24">
+                    <p>History</p>
+                </div>
+            </mat-tab>
+
+            <mat-tab label="JSON">
+                <div class="p-24">
+                    <pre>{{environment|json}}</pre>
+                </div>
+            </mat-tab>
+
+        </mat-tab-group>
+
+    </div>
+    <!-- / CONTENT -->
+
+</div>
