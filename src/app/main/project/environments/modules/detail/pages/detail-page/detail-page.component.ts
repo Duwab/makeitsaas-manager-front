@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-    templateUrl: './detail-page.component.html'
+    templateUrl: './detail-page.component.html',
+    styleUrls: ['./detail-page.component.scss']
 })
 export class DetailPageComponent {
     environment: {id: string|number};
@@ -19,5 +20,9 @@ export class DetailPageComponent {
                 }
             }, 1000);
         })
+    }
+
+    deleteEnvironment() {
+        alert('delete environment');
     }
 }

@@ -14,25 +14,35 @@
         <mat-tab-group dynamicHeight="true" *ngIf="environment">
 
             <mat-tab label="Architecture">
-                <div class="p-24">
-                    <environment-architecture [environment]="environment"></environment-architecture>
+                <div class="architecture p-24">
+                    <div class="actions">
+                        <environment-actions [environmentId]="environment.id"></environment-actions>
+                    </div>
+                    <environment-architecture [environmentId]="environment.id"></environment-architecture>
                 </div>
             </mat-tab>
 
             <mat-tab label="Settings">
                 <div class="p-24">
-                    <p>Settings</p>
+                    <h3>Settings</h3>
+                    <button mat-button mat-raised-button color="warn" (click)="deleteEnvironment()">
+                        <mat-icon class="mat-icon material-icons mat-icon-no-color" role="img" aria-hidden="true">
+                            delete
+                        </mat-icon>
+                        Delete environment
+                    </button>
                 </div>
             </mat-tab>
 
-            <mat-tab label="History">
-                <div class="p-24">
-                    <p>History</p>
-                </div>
-            </mat-tab>
+            <!--<mat-tab label="History">-->
+            <!--<div class="p-24">-->
+            <!--<p>History</p>-->
+            <!--</div>-->
+            <!--</mat-tab>-->
 
-            <mat-tab label="JSON">
+            <mat-tab label="Config">
                 <div class="p-24">
+                    <environment-yml [environmentId]="environment.id"></environment-yml>
                     <pre>{{environment|json}}</pre>
                 </div>
             </mat-tab>

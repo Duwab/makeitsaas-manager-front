@@ -25,27 +25,6 @@ export const navigation: FuseNavigation[] = [
         ]
     },
     {
-        id       : 'workflows',
-        title    : 'Workflows',
-        type     : 'group',
-        children : [
-            {
-                id       : 'workflow-global',
-                title    : 'Global',
-                type     : 'item',
-                icon     : 'device_hub',
-                // url      : '/projects/:project_id/workflows/list',
-            },
-            {
-                id       : 'workflow-operations',
-                title    : 'Operations',
-                type     : 'item',
-                icon     : 'build',
-                // url      : '/projects/:project_id/workflows/2',
-            },
-        ]
-    },
-    {
         id       : 'environments',
         title    : 'Environments',
         type     : 'group',
@@ -82,6 +61,27 @@ export const navigation: FuseNavigation[] = [
                         url      : '/projects/1/environments/3',
                     },
                 ]
+            },
+        ]
+    },
+    {
+        id       : 'workflows',
+        title    : 'Workflows',
+        type     : 'group',
+        children : [
+            {
+                id       : 'workflow-global',
+                title    : 'Global',
+                type     : 'item',
+                icon     : 'device_hub',
+                // url      : '/projects/:project_id/workflows/list',
+            },
+            {
+                id       : 'workflow-operations',
+                title    : 'Operations',
+                type     : 'item',
+                icon     : 'build',
+                // url      : '/projects/:project_id/workflows/2',
             },
         ]
     },

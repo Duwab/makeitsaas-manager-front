@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { EnvironmentService } from './services/environment.service';
 
 // import { FuseSharedModule } from '@fuse/shared.module';
 
@@ -21,6 +22,7 @@ const routes = [
         // FuseSharedModule
     ],
     providers: [
+        EnvironmentService
     ]
 })
 export class EnvironmentsModule

@@ -1,6 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MatButtonModule, MatDividerModule, MatFormFieldModule, MatIconModule, MatMenuModule, MatSelectModule, MatTableModule, MatTabsModule } from '@angular/material';
+import {
+    MatButtonModule,
+    MatDividerModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatListModule,
+    MatMenuModule,
+    MatSelectModule,
+    MatTableModule,
+    MatTabsModule
+} from '@angular/material';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { FuseSharedModule } from '@fuse/shared.module';
@@ -36,6 +46,7 @@ const routes: Routes = [
         MatSelectModule,
         MatTableModule,
         MatTabsModule,
+        MatListModule,
 
         NgxChartsModule,
 

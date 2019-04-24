@@ -4,12 +4,12 @@ import {
     MatButtonModule,
     MatDividerModule,
     MatFormFieldModule,
-    MatIconModule,
+    MatIconModule, MatListModule,
     MatMenuModule,
     MatProgressSpinnerModule,
     MatSelectModule,
     MatTableModule,
-    MatTabsModule
+    MatTabsModule, MatTooltipModule
 } from '@angular/material';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
@@ -19,6 +19,8 @@ import { FuseWidgetModule } from '@fuse/components/widget/widget.module';
 
 import { EnvironemntArchitectureComponent } from './components/environment-architecture/environment-architecture.component';
 import { DetailPageComponent } from './pages/detail-page/detail-page.component';
+import { EnvironmentActionsComponent } from './components/environment-actions/environment-actions.component';
+import { EnvironmentYmlComponent } from './components/environment-yml/environment-yml.component';
 
 const routes: Routes = [
     {
@@ -30,7 +32,9 @@ const routes: Routes = [
 @NgModule({
     declarations: [
         EnvironemntArchitectureComponent,
-        DetailPageComponent
+        EnvironmentActionsComponent,
+        EnvironmentYmlComponent,
+        DetailPageComponent,
     ],
     imports     : [
         RouterModule.forChild(routes),
@@ -44,6 +48,8 @@ const routes: Routes = [
         MatTableModule,
         MatTabsModule,
         MatProgressSpinnerModule,
+        MatTooltipModule,
+        MatListModule,
 
         NgxChartsModule,
 

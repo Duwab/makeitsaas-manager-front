@@ -1,1 +1,58 @@
-<p>Architecture diagram {{environment.id}}</p>
+<div class="environment-diagram">
+    <div class="diagram">
+        <div class="routing">
+            <div class="domains">
+                <div class="domain" *ngFor="let domain of domains" matTooltip="Domains configured for this environment">
+                    <span>
+                        <a href="http://auth-project.lab.makeitsaas.com" target="_blank">
+                          https://{{domain}}
+                        </a>
+                        <div class="actions-wrap">
+                            <mat-icon (click)="renameDomain(domain)">edit</mat-icon>
+                            <mat-icon (click)="deleteDomain(domain)">delete</mat-icon>
+                        </div>
+                    </span>
+                </div>
+            </div>
+            <div class="api-gate" matTooltip="Where external HTTP(s) requests come in">
+                API Gate
+            </div>
+            <div class="arrow"></div>
+            <div class="services-container">
+                <div class="service" *ngFor="let service of services">
+                    <div class="arrow"></div>
+                    <div class="path" matTooltip="Subpath for this service">
+                        <span>
+                            {{service.subpath}}
+                            <div class="actions-wrap">
+                                <mat-icon (click)="renameServicePath(service.id)">edit</mat-icon>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="service-compute" matTooltip="{{service.name}} API" (click)="updateService(service.id)">
+                        API
+                    </div>
+                    <div class="arrow"></div>
+                    <div class="service-database" matTooltip="Database associated to this service"
+                        (click)="showDatabase(service.id)">
+                        DB
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="queueing" matTooltip="Queues used by the system">
+            <div class="queues">
+                <div *ngFor="let queue of ['profile-update', 'subscription-update', 'batch-request']">
+                    <div class="queue">{{queue}}</div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="data-processing" matTooltip="Data lakes resulting of system data processing">
+            <div class="data-lakes">
+                <div class="data-lake" *ngFor="let lakeName of ['profile', 'analytics']">
+                    <div >{{lakeName}}</div>
+                </div>
+            </div>
+        </div>-->
+    </div>
+</div>

@@ -21,7 +21,6 @@ export class ListComponent implements OnInit
      * @param {ListService} _detailService
      */
     constructor(
-        private _fuseSidebarService: FuseSidebarService,
         private _detailService: ListService
     )
     {
@@ -42,13 +41,7 @@ export class ListComponent implements OnInit
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
 
-    /**
-     * Toggle the sidebar
-     *
-     * @param name
-     */
-    toggleSidebar(name): void
-    {
-        this._fuseSidebarService.getSidebar(name).toggleOpen();
+    createEnvironment() {
+        alert('create environment');
     }
 }
