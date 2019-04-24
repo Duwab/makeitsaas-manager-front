@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { FuseNavigationService } from '../../../../@fuse/components/navigation/navigation.service';
-import { FuseConfigService } from '../../../../@fuse/services/config.service';
+import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
+import { FuseConfigService } from '@fuse/services/config.service';
 
 interface Project {
     id: string
@@ -15,8 +15,12 @@ export class NavigationProjectService {
     private currentProjectSubject: BehaviorSubject<Project> = new BehaviorSubject<Project>(null);
 
     private projectUrls = {
-        'analytics': '/projects/:project_id/dashboards/analytics',
-        'project': '/projects/:project_id/dashboards/project',
+        'project-dashboard-analytics': '/projects/:project_id/dashboards/analytics',
+        'project-dashboard-project': '/projects/:project_id/dashboards/project',
+        'all-projects': '/projects/:project_id/all-projects',
+        'team': '/projects/:project_id/team',
+        'workflow-global': '/projects/:project_id/workflows/list',
+        'workflow-operations': '/projects/:project_id/workflows/operations',
     };
 
     constructor(

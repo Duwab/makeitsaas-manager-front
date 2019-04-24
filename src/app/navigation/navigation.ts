@@ -9,18 +9,18 @@ export const navigation: FuseNavigation[] = [
         icon     : 'dashboard',
         children : [
             {
-                id   : 'analytics',
+                id   : 'project-dashboard-analytics',
                 title: 'Analytics',
                 type : 'item',
                 icon : 'multiline_chart',
-                url  : '/projects/2/dashboards/analytics'
+                // url  : '/projects/2/dashboards/analytics'
             },
             {
-                id   : 'project',
+                id   : 'project-dashboard-project',
                 title: 'Project',
                 type : 'item',
                 icon : 'bar_chart',
-                url  : '/projects/1/dashboards/project'
+                // url  : '/projects/1/dashboards/project'
             }
         ]
     },
@@ -30,18 +30,18 @@ export const navigation: FuseNavigation[] = [
         type     : 'group',
         children : [
             {
-                id       : 'global',
+                id       : 'workflow-global',
                 title    : 'Global',
                 type     : 'item',
                 icon     : 'device_hub',
-                url      : '/sample',
+                // url      : '/projects/:project_id/workflows/list',
             },
             {
-                id       : 'operations',
+                id       : 'workflow-operations',
                 title    : 'Operations',
                 type     : 'item',
                 icon     : 'build',
-                url      : '/sample',
+                // url      : '/projects/:project_id/workflows/2',
             },
         ]
     },
@@ -82,6 +82,28 @@ export const navigation: FuseNavigation[] = [
                         url      : '/projects/1/environments/3',
                     },
                 ]
+            },
+        ]
+    },
+    {
+        id       : 'others',
+        title    : 'Others',
+        type     : 'group',
+        icon     : 'dashboard',
+        children : [
+            {
+                id   : 'team',
+                title: 'Team',
+                type : 'item',
+                icon : 'bar_chart',
+                // url  : '/projects/:project_id/todo'
+            },
+            {
+                id   : 'all-projects',
+                title: 'All projects',
+                type : 'item',
+                icon : 'multiline_chart',
+                // url  : '/projects/:project_id/todo'
             },
         ]
     },

@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 
 import { FuseSharedModule } from '@fuse/shared.module';
 import { NavigationProjectService } from './services/navigation-project.service';
+import { TodoComponent } from './todo/todo.component';
 
 const routes = [
     {
@@ -18,6 +19,22 @@ const routes = [
         loadChildren: './environments/environments.module#EnvironmentsModule',
     },
     {
+        path: 'projects/:project_id/workflows',
+        loadChildren: './workflows/workflows.module#WorkflowsModule',
+    },
+    {
+        path: 'projects/:project_id/todo',
+        component: TodoComponent
+    },
+    {
+        path: 'projects/:project_id/team',
+        component: TodoComponent
+    },
+    {
+        path: 'projects/:project_id/all-projects',
+        component: TodoComponent
+    },
+    {
         path: 'projects/:project_id',
         redirectTo: 'projects/:project_id/dashboards/analytics'
     }
@@ -27,6 +44,9 @@ const routes = [
     imports: [
         RouterModule.forChild(routes),
         FuseSharedModule
+    ],
+    declarations: [
+        TodoComponent
     ],
     providers: [
         NavigationProjectService

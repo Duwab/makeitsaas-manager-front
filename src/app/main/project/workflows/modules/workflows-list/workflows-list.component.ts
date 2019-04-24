@@ -2,27 +2,27 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { fuseAnimations } from '@fuse/animations';
 
-import { ListService } from './list.service';
+import { WorkflowsListService } from './workflows-list.service';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
 @Component({
-    templateUrl  : './list.component.html',
-    styleUrls    : ['./list.component.scss'],
+    templateUrl  : './workflows-list.component.html',
+    styleUrls    : ['./workflows-list.component.scss'],
     encapsulation: ViewEncapsulation.None,
     animations   : fuseAnimations
 })
-export class ListComponent implements OnInit
+export class WorkflowsListComponent implements OnInit
 {
 
     /**
      * Constructor
      *
      * @param {FuseSidebarService} _fuseSidebarService
-     * @param {ListService} _detailService
+     * @param {WorkflowsListService} _detailService
      */
     constructor(
         private _fuseSidebarService: FuseSidebarService,
-        private _detailService: ListService
+        private _detailService: WorkflowsListService
     )
     {
     }
