@@ -3,7 +3,6 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 
 import { OperationsService } from './operations.service';
-import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
 @Component({
     templateUrl  : './operations.component.html',
@@ -17,12 +16,10 @@ export class OperationsComponent implements OnInit
     /**
      * Constructor
      *
-     * @param {FuseSidebarService} _fuseSidebarService
      * @param {OperationsService} _detailService
      */
     constructor(
-        private _fuseSidebarService: FuseSidebarService,
-        private _detailService: OperationsService
+        private _operationsService: OperationsService
     )
     {
     }
@@ -42,13 +39,16 @@ export class OperationsComponent implements OnInit
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
 
-    /**
-     * Toggle the sidebar
-     *
-     * @param name
-     */
-    toggleSidebar(name): void
-    {
-        this._fuseSidebarService.getSidebar(name).toggleOpen();
+    createOperation() {
+        alert('modal "create operation"');
+        /*
+            From one service
+            To another service
+            Diff generator
+            - add/delete services
+            - update/lock services
+            - migrate services data
+            - update proxy routes
+         */
     }
 }

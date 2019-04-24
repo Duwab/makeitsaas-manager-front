@@ -2,20 +2,18 @@
 
     <!-- HEADER -->
     <div class="header accent p-24">
-        <h2>List of environments</h2>
+        <h2>
+            List of environments
+            <button mat-button mat-raised-button color="primary" style="margin-left: 10px" (click)="createEnvironment()">
+                <mat-icon class="mat-icon material-icons mat-icon-no-color" role="img" aria-hidden="true">add</mat-icon>
+                Create
+            </button>
+        </h2>
     </div>
     <!-- / HEADER -->
 
     <!-- CONTENT -->
     <div class="content p-24">
-        <mat-list>
-            <mat-list-item>
-                <button mat-button mat-raised-button color="accent" style="margin-left: 10px" (click)="createEnvironment()">
-                    <mat-icon class="mat-icon material-icons mat-icon-no-color" role="img" aria-hidden="true">save</mat-icon>
-                    Create
-                </button>
-            </mat-list-item>
-        </mat-list>
     </div>
     <!-- / CONTENT -->
 

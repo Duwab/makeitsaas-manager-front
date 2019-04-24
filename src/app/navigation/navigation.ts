@@ -38,9 +38,14 @@ export const navigation: FuseNavigation[] = [
             },
             {
                 id       : 'detail',
-                title    : 'Detail',
+                title    : 'Editor',
                 type     : 'collapsable',
-                icon     : 'details',
+                icon     : 'center_focus_strong',
+                badge    : {
+                    title    : '3',
+                    bg       : '#555',
+                    fg       : '#FFFFFF'
+                },
                 children : [
                     {
                         id       : 'prod',
@@ -92,17 +97,25 @@ export const navigation: FuseNavigation[] = [
         icon     : 'dashboard',
         children : [
             {
+                id   : 'servers',
+                title: 'Servers & Clusters',
+                type : 'item',
+                icon : 'storage',
+                // url  : '/projects/:project_id/todo'
+            },
+            {
                 id   : 'team',
                 title: 'Team',
                 type : 'item',
-                icon : 'bar_chart',
+                icon : 'group',
                 // url  : '/projects/:project_id/todo'
             },
             {
                 id   : 'all-projects',
-                title: 'All projects',
+                title: 'Back to projects',
                 type : 'item',
-                icon : 'multiline_chart',
+                // icon : 'navigate_before',
+                icon : 'undo',
                 // url  : '/projects/:project_id/todo'
             },
         ]

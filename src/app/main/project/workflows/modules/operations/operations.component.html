@@ -2,7 +2,13 @@
 
     <!-- HEADER -->
     <div class="header accent p-24">
-        <h2>Global view of operations</h2>
+        <h2>
+            Global view of operations
+            <button mat-button mat-raised-button color="primary" style="margin-left: 10px" (click)="createOperation()">
+                <mat-icon class="mat-icon material-icons mat-icon-no-color" role="img" aria-hidden="true">add</mat-icon>
+                new operation
+            </button>
+        </h2>
     </div>
     <!-- / HEADER -->
 

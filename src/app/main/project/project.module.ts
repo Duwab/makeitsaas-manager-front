@@ -31,6 +31,10 @@ const routes = [
         component: TodoComponent
     },
     {
+        path: 'projects/:project_id/servers',
+        component: TodoComponent
+    },
+    {
         path: 'projects/:project_id/all-projects',
         component: TodoComponent
     },

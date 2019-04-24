@@ -22,5 +22,11 @@ export class EnvironmentActionsComponent {
 
     addService() {
         this.environmentService.addService(this.environmentId);
+        /*
+            new service modal stepper :
+            - blank service Vs distribution service
+            - customize service config
+            - confirm + tell "clone, remove origin, add origin, push -u"
+         */
     }
 }
