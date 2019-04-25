@@ -2,7 +2,7 @@
 
     <!-- HEADER -->
     <div class="header accent p-24">
-        <h2 *ngIf="environment?.id">Env {{environment.id}} <mat-icon (click)="renameEnvironment()">edit</mat-icon></h2>
+        <h2 *ngIf="environment?.id">{{environment.name}} <mat-icon (click)="renameEnvironment()">edit</mat-icon></h2>
         <h2 *ngIf="!environment?.id">-</h2>
     </div>
     <!-- / HEADER -->
@@ -18,7 +18,7 @@
                     <div class="actions">
                         <environment-actions [environmentId]="environment.id"></environment-actions>
                     </div>
-                    <environment-architecture [environmentId]="environment.id"></environment-architecture>
+                    <environment-architecture *ngIf="environment.configuration" [environmentId]="environment.id"></environment-architecture>
                 </div>
             </mat-tab>
 

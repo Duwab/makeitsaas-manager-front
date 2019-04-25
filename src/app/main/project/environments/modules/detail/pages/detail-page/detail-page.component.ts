@@ -1,24 +1,26 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { EnvironmentService } from '../../../../services/environment.service';
 
 @Component({
     templateUrl: './detail-page.component.html',
     styleUrls: ['./detail-page.component.scss']
 })
 export class DetailPageComponent {
-    environment: {id: string|number};
+    environment: any;
 
     constructor(
-        private activeRoute: ActivatedRoute
+        private activeRoute: ActivatedRoute,
+        private environmentService: EnvironmentService
     ) {
         this.activeRoute.params.subscribe(params => {
             this.environment = null;
 
-            setTimeout(() => {
-                this.environment = {
-                    id: params.environment_id
-                }
-            }, 1000);
+            setTimeout(() => {  // dirty fix to force refresh
+                this.environmentService.getEnvironment(params.environment_id).subscribe(env => {
+                    this.environment = env;
+                });
+            }, 1);
         })
     }
 

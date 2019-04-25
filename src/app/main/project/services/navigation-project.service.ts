@@ -88,7 +88,6 @@ export class NavigationProjectService {
             this.httpClient
                 .get(`${environment.apiBaseUrl}/projects/${this.currentProjectId}/environments`)
                 .subscribe((response: any) => {
-                    console.log('environments', response.environments);
                     this.applyEnvironmentsNavigation(response.environments);
                 });
         } else {

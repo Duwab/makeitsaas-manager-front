@@ -12,6 +12,7 @@ interface Service {
 
 interface Environment {
     id: string;
+    name: string;
     configuration: {
         domains: any[];
         services: Service[];
