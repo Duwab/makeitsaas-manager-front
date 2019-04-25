@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { NavigationProjectService } from '../../services/navigation-project.service';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'environments/environment';
 
 interface Service {
     id: string;
@@ -9,90 +12,51 @@ interface Service {
 
 interface Environment {
     id: string;
-    domains: string[];
-    services: Service[];
+    configuration: {
+        domains: any[];
+        services: Service[];
+    }
 }
 
-const environmentsMock: {[id: string]: Environment} = {
-    1 : {
-        id: '1',
-        domains: [
-            'project.makeitsaas.com',
-        ],
-        services: [
-            {id: '1', name: 'Authentication', subpath: '/auth'},
-            {id: '2', name: 'Subscriptions', subpath: '/subscription'},
-            {id: '3', name: 'Custom', subpath: '/custom'}
-        ]
-    }
-};
-
-let NEXT_SERVICE_ID = 4;
-
-/*domains = [
-  'project.makeitsaas.com',
-];
-
-services = [
-  {name: 'Authentication', subpath: '/auth'},
-  {name: 'Subscriptions', subpath: '/subscription'},
-  {name: 'Custom', subpath: '/custom'}
-];*/
-
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class EnvironmentService {
 
     private environments: {[id: string]: BehaviorSubject<Environment>} = {};
 
-    constructor() {}
+    constructor(
+        private navigationProjectService: NavigationProjectService,
+        private httpClient: HttpClient
+    ) {
+    }
 
     getEnvironment(id: string): Observable<Environment> {
         if (!this.environments[id]) {
-            const mockValue: Environment = environmentsMock[id] || this.generateMockEnvironment(id);
-            this.environments[id] = new BehaviorSubject<Environment>(mockValue);
+            //const mockValue: Environment = environmentsMock[id] || this.generateMockEnvironment(id);
+            this.refetchEnvironment(id);
         }
 
         return this.environments[id].asObservable();
     }
 
-    refreshEnvironment(id: string): void {
-        this.environments[id].next(environmentsMock[id]);
+    refetchEnvironment(id: string): void {
+        if (!this.environments[id]) {
+            this.environments[id] = new BehaviorSubject<Environment>(null);
+        }
+        this.httpClient.get(`${environment.apiBaseUrl}/environments/${id}`).subscribe((data: Environment) => {
+            this.environments[id].next(data);
+        });
     }
 
     addDomain(environmentId: string): Observable<any> {
-        environmentsMock[environmentId].domains.push('some-other-domain.makeitsaas.com');
-        this.refreshEnvironment(environmentId);
+        // this.refreshEnvironment(environmentId);
         return this.getEnvironment(environmentId);
     }
 
     addService(environmentId: string): Observable<any> {
-        environmentsMock[environmentId].services.push(this.generateMockService());
-        this.refreshEnvironment(environmentId);
+        // this.refreshEnvironment(environmentId);
         return this.getEnvironment(environmentId);
     }
 
-    generateMockEnvironment(id: string): Environment {
-        if (!environmentsMock[id]) {
-            environmentsMock[id] = {
-                id,
-                domains: [
-                    `example-${id}.makeitsaas.com`
-                ],
-                services: [
-                    this.generateMockService()
-                ]
-            };
-        }
-
-        return environmentsMock[id];
-    }
-
-    generateMockService(): Service {
-        const serviceId = `${NEXT_SERVICE_ID++}`;
-        return {
-            id: serviceId,
-            name: 'Some service',
-            subpath: `/path-${serviceId}`
-        };
-    }
 }

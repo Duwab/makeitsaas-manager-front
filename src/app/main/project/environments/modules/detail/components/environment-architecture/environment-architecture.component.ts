@@ -15,7 +15,7 @@ export class EnvironemntArchitectureComponent implements OnInit
     @Input() environmentId: string;
 
     environment: any;
-    domains: string[] = [];
+    domains: any[] = [];
     services: any[] = [];
 
     /**
@@ -38,9 +38,11 @@ export class EnvironemntArchitectureComponent implements OnInit
     ngOnInit(): void
     {
         this.environmentService.getEnvironment(this.environmentId).subscribe(environment => {
-            this.environment = environment;
-            this.domains = environment.domains;
-            this.services = environment.services;
+            if(environment) {
+                this.environment = environment;
+                this.domains = environment.configuration.domains;
+                this.services = environment.configuration.services;
+            }
         });
     }
 

@@ -44,6 +44,10 @@ export class OperationsComponent implements OnInit
         /*
             From one service
             To another service
+            Mode :
+            - pre-prod: takes all prod services+data, then applies env update
+            - test: takes all prod services, possible specific data, then applies env update
+            - dev: updates target configuration (unlocked services, branches, ...)
             Diff generator
             - add/delete services
             - update/lock services

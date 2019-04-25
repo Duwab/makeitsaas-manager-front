@@ -4,9 +4,14 @@
 // Import app.theme.scss
 @import "app/app.theme";
 
-pre {
-    background: #EEEEEE;
-    padding: 4px 8px;
-    margin-right: 0;
-    margin-left: 0;
+.mat-success {
+    background-color: green !important;
+    color: #fff !important;
 }
+
+pre, code {
+    background: rgba(0,0,0,.03);
+}
+
+pre {padding: 5px 10px; margin-right: 0; margin-left: 0;}
+code {padding: 1px 5px}

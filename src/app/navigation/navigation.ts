@@ -30,14 +30,14 @@ export const navigation: FuseNavigation[] = [
         type     : 'group',
         children : [
             {
-                id       : 'overview',
+                id       : 'environments-overview',
                 title    : 'Overview',
                 type     : 'item',
                 icon     : 'assessment',
-                url      : '/projects/:project_id/environments/list',
+                // url      : '/projects/:project_id/environments/list',
             },
             {
-                id       : 'detail',
+                id       : 'environments-details',
                 title    : 'Editor',
                 type     : 'collapsable',
                 icon     : 'center_focus_strong',

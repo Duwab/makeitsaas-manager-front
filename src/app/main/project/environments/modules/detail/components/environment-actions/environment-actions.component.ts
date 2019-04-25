@@ -16,6 +16,10 @@ export class EnvironmentActionsComponent {
         alert('create deploy order');
     }
 
+    save() {
+        alert('save configuration');
+    }
+
     addDomain() {
         this.environmentService.addDomain(this.environmentId);
     }

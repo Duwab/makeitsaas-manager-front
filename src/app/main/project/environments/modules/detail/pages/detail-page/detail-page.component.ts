@@ -22,7 +22,11 @@ export class DetailPageComponent {
         })
     }
 
+    renameEnvironment() {
+        alert('Rename environment');
+    }
+
     deleteEnvironment() {
-        alert('delete environment');
+        alert('Delete environment');
     }
 }

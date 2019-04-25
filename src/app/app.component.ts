@@ -57,7 +57,7 @@ export class AppComponent implements OnInit, OnDestroy
         // Get default navigation
         this.navigation = navigation;
 
-        this.navigationProjectService.onProject().subscribe(project => this.onProjectChange(project));
+        this.navigationProjectService.projectObservable().subscribe(project => this.onProjectChange(project));
 
         // Register the navigation to the service
         this._fuseNavigationService.register('main', this.navigation);

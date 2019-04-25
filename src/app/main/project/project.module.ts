@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { NavigationProjectService } from './services/navigation-project.service';
 import { TodoComponent } from './todo/todo.component';
+import { EnvironmentService } from './environments/services/environment.service';
 
 const routes = [
     {
@@ -53,7 +54,8 @@ const routes = [
         TodoComponent
     ],
     providers: [
-        NavigationProjectService
+        NavigationProjectService,
+        // EnvironmentService
     ],
     exports: []
 })
