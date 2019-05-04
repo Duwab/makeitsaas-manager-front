@@ -4,12 +4,12 @@
             <div class="domains">
                 <div class="domain" *ngFor="let domain of domains" matTooltip="Domains configured for this environment">
                     <span>
-                        <a href="http://auth-project.lab.makeitsaas.com" target="_blank">
-                          https://{{domain.subdomain}}
+                        <a href="http://{{domain}}" target="_blank">
+                          https://{{domain}}
                         </a>
                         <div class="actions-wrap">
-                            <mat-icon (click)="renameDomain(domain.id)">edit</mat-icon>
-                            <mat-icon (click)="deleteDomain(domain.id)">delete</mat-icon>
+                            <mat-icon (click)="renameDomain(domain)">edit</mat-icon>
+                            <mat-icon (click)="deleteDomain(domain)">delete</mat-icon>
                         </div>
                     </span>
                 </div>

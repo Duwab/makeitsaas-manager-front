@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { NavigationProjectService } from '../../services/navigation-project.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'environments/environment';
+import { map } from 'rxjs/operators';
 
 interface Service {
     id: string;
@@ -13,6 +14,7 @@ interface Service {
 interface Environment {
     id: string;
     name: string;
+    domains: string[];
     configuration: {
         domains: any[];
         services: Service[];
@@ -24,7 +26,11 @@ interface Environment {
 })
 export class EnvironmentService {
 
+    // last config fetched from API
     private environments: {[id: string]: BehaviorSubject<Environment>} = {};
+
+    // last edited environment
+    private editedEnvironment: {[id: string]: BehaviorSubject<Environment>} = {};
 
     constructor(
         private navigationProjectService: NavigationProjectService,
@@ -34,7 +40,6 @@ export class EnvironmentService {
 
     getEnvironment(id: string): Observable<Environment> {
         if (!this.environments[id]) {
-            //const mockValue: Environment = environmentsMock[id] || this.generateMockEnvironment(id);
             this.refetchEnvironment(id);
         }
 
@@ -50,13 +55,16 @@ export class EnvironmentService {
         });
     }
 
-    addDomain(environmentId: string): Observable<any> {
-        // this.refreshEnvironment(environmentId);
-        return this.getEnvironment(environmentId);
+    addDomain(environmentId: string, domain: string): Observable<any> {
+        return this.httpClient
+            .post(`${environment.apiBaseUrl}/environments/${environmentId}/domains`, {domain})
+            .pipe(map((response: any) => {
+                this.refetchEnvironment(environmentId);
+                return response;
+            }));
     }
 
     addService(environmentId: string): Observable<any> {
-        // this.refreshEnvironment(environmentId);
         return this.getEnvironment(environmentId);
     }
 

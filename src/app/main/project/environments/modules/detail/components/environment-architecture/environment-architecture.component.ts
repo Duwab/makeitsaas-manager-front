@@ -2,6 +2,7 @@ import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { fuseAnimations } from '@fuse/animations';
 import { EnvironmentService } from '../../../../services/environment.service';
+import { MatDialog } from '@angular/material';
 
 @Component({
     selector     : 'environment-architecture',
@@ -23,7 +24,8 @@ export class EnvironemntArchitectureComponent implements OnInit
      *
      */
     constructor(
-        private environmentService: EnvironmentService
+        private environmentService: EnvironmentService,
+        private dialog: MatDialog
     )
     {
     }
@@ -40,7 +42,7 @@ export class EnvironemntArchitectureComponent implements OnInit
         this.environmentService.getEnvironment(this.environmentId).subscribe(environment => {
             if(environment) {
                 this.environment = environment;
-                this.domains = environment.configuration.domains;
+                this.domains = environment.domains;
                 this.services = environment.configuration.services;
             }
         });

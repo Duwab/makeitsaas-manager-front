@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {
-    MatButtonModule,
+    MatButtonModule, MatDialogModule,
     MatDividerModule,
     MatFormFieldModule,
-    MatIconModule, MatListModule,
+    MatIconModule, MatInputModule, MatListModule,
     MatMenuModule,
     MatProgressSpinnerModule,
-    MatSelectModule,
+    MatSelectModule, MatSnackBarModule,
     MatTableModule,
     MatTabsModule, MatTooltipModule
 } from '@angular/material';
@@ -21,6 +21,7 @@ import { EnvironemntArchitectureComponent } from './components/environment-archi
 import { DetailPageComponent } from './pages/detail-page/detail-page.component';
 import { EnvironmentActionsComponent } from './components/environment-actions/environment-actions.component';
 import { EnvironmentYmlComponent } from './components/environment-yml/environment-yml.component';
+import { ModalAddDomainComponent } from './components/modal-add-domain/modal-add-domain.component';
 
 const routes: Routes = [
     {
@@ -35,6 +36,7 @@ const routes: Routes = [
         EnvironmentActionsComponent,
         EnvironmentYmlComponent,
         DetailPageComponent,
+        ModalAddDomainComponent,
     ],
     imports     : [
         RouterModule.forChild(routes),
@@ -50,12 +52,18 @@ const routes: Routes = [
         MatProgressSpinnerModule,
         MatTooltipModule,
         MatListModule,
+        MatDialogModule,
+        MatInputModule,
+        MatSnackBarModule,
 
         NgxChartsModule,
 
         FuseSharedModule,
         FuseSidebarModule,
         FuseWidgetModule
+    ],
+    entryComponents: [
+        ModalAddDomainComponent
     ]
 })
 export class DetailModule
