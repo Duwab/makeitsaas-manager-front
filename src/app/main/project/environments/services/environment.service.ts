@@ -64,6 +64,24 @@ export class EnvironmentService {
             }));
     }
 
+    updateDomainName(environmentId: string, previous: string, next: string): Observable<any> {
+        return this.httpClient
+            .put(`${environment.apiBaseUrl}/environments/${environmentId}/domains`, {previous, next})
+            .pipe(map((response: any) => {
+                this.refetchEnvironment(environmentId);
+                return response;
+            }));
+    }
+
+    removeDomain(environmentId: string, domain: string): Observable<any> {
+        return this.httpClient
+            .delete(`${environment.apiBaseUrl}/environments/${environmentId}/domains/${domain}`)
+            .pipe(map((response: any) => {
+                this.refetchEnvironment(environmentId);
+                return response;
+            }));
+    }
+
     addService(environmentId: string): Observable<any> {
         return this.getEnvironment(environmentId);
     }

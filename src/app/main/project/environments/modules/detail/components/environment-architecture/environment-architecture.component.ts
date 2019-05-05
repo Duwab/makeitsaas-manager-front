@@ -1,8 +1,9 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { MatDialog } from '@angular/material';
 
 import { fuseAnimations } from '@fuse/animations';
 import { EnvironmentService } from '../../../../services/environment.service';
-import { MatDialog } from '@angular/material';
+import { ModalSubdomainEditorComponent } from '../modal-subdomain-editor/modal-subdomain-editor.component';
 
 @Component({
     selector     : 'environment-architecture',
@@ -53,11 +54,18 @@ export class EnvironemntArchitectureComponent implements OnInit
     // -----------------------------------------------------------------------------------------------------
 
     renameDomain(domainName) {
-        alert('Rename domain ' + domainName);
+        this.dialog.open(ModalSubdomainEditorComponent, {
+            width: '250px',
+            data: {
+                environmentId: this.environmentId,
+                initialValue: domainName
+            }
+        });
     }
 
     deleteDomain(domainName) {
-        alert('Delete domain ' + domainName);
+        this.environmentService.removeDomain(this.environmentId, domainName)
+            .subscribe(() => {}, error => {alert('Delete error :' + error && error.message )});
     }
 
     renameServicePath(serviceId) {

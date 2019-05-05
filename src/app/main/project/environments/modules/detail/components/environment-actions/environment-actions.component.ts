@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { EnvironmentService } from '../../../../services/environment.service';
-import { ModalAddDomainComponent } from '../modal-add-domain/modal-add-domain.component';
 import { MatDialog, MatSnackBar } from '@angular/material';
+import { EnvironmentService } from '../../../../services/environment.service';
+import { ModalSubdomainEditorComponent } from '../modal-subdomain-editor/modal-subdomain-editor.component';
 
 @Component({
     selector: 'environment-actions',
@@ -25,18 +25,10 @@ export class EnvironmentActionsComponent {
     }
 
     addDomain() {
-        const dialogRef = this.dialog.open(ModalAddDomainComponent, {
+        this.dialog.open(ModalSubdomainEditorComponent, {
             width: '250px',
             data: {
                 environmentId: this.environmentId
-            }
-        });
-
-        dialogRef.afterClosed().subscribe(result => {
-            if(result) {
-                this.snackBar.open("Domain saved", undefined, {
-                    duration: 2000
-                });
             }
         });
     }
