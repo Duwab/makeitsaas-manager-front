@@ -76,7 +76,7 @@ export class EnvironmentService {
         }
 
         const sub = this.getEnvironment(environmentId).subscribe(environment => {
-            let newConfig = environment.configuration;
+            let newConfig = environment.configuration || {services: []};
             this.editableConfigurations[environmentId] = newConfig;
             this.editableConfigurationSubjects[environmentId].next(newConfig);
             setTimeout(() => sub.unsubscribe(), 1);

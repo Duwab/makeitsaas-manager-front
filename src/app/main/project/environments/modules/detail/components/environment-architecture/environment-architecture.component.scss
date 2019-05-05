@@ -20,10 +20,10 @@ $queueingWidth: 0;
     }
 }
 
-.service, .service-compute, .service-database, .api-gate, .queues, .data-processing, .data-lake {
+.service, .service-compute, .api-gate, .queues, .data-processing, .data-lake {
     display: block;
-    padding: 25px 30px;
-    border: 1px solid black;
+    //padding: 25px 30px;
+    //border: 1px solid black;
 }
 
 .domains {
@@ -74,9 +74,18 @@ span {
 
 .api-gate {
     width: 80px;
+    height: 80px;
+    background-image: url('/assets/icons/tech/cloud.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
     margin: auto;
-    padding: 10px;
-    font-size: .8em;
+    font-size: .9em;
+
+    .api-gate-label {
+        padding-top: 36px;
+        padding-left: 7px;
+    }
 }
 
 .services-container {
@@ -86,6 +95,7 @@ span {
     .service {
         position: relative;
         padding-top: 0;
+        padding-bottom: 10px;
         display: inline-block;
         border: none;
 
@@ -97,7 +107,7 @@ span {
                 border-top: 1px solid black;
                 left: 50%;
                 top: 0;
-                width: 147px;
+                width: 160px;
             }
             &::after {
                 display: block;
@@ -130,6 +140,42 @@ span {
 
             &:hover {
                 background-color: #EEEEEE;
+            }
+        }
+
+        .service-compute {
+            display: block;
+            position: relative;
+            background-image: url('/assets/icons/tech/gear-colored.png');
+            background-size: 100%;
+            width: 100px;
+            height: 100px;
+            margin: 0 30px;
+            padding: 0;
+
+            .compute-label {
+                padding-top: 40px;
+                width: 140%;
+                margin-left: -20%;
+                text-align: center;
+
+                span {
+                    display: block;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+            }
+        }
+
+        .service-database {
+            position: absolute;
+            width: 30px;
+            right: 20px;
+            bottom: 0;
+
+            img.database-icon {
+                max-width: 100%;
             }
         }
     }

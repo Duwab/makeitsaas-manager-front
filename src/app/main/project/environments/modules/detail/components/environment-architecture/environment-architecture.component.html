@@ -15,7 +15,9 @@
                 </div>
             </div>
             <div class="api-gate" matTooltip="Where external HTTP(s) requests come in">
-                API Gate
+                <div class="api-gate-label">
+                    <span>API Gate</span>
+                </div>
             </div>
             <div class="arrow"></div>
             <div class="services-container">
@@ -24,23 +26,23 @@
                     <div class="path" matTooltip="Subpath for this service">
                         <span>
                             {{service.path}}
-                            <div class="actions-wrap">
+                            <!--<div class="actions-wrap">
                                 <mat-icon (click)="renameServicePath(service.service_id)">edit</mat-icon>
-                            </div>
+                            </div>-->
                         </span>
                     </div>
-                    <div class="service-compute" matTooltip="{{service.name}} API" (click)="updateService(service)">
-                        API
+                    <div class="service-compute" matTooltip="service({{service.service_id}}) API" (click)="updateService(service)">
+                        <div class="compute-label">
+                            <span>API</span>
+                        </div>
                     </div>
-                    <div class="arrow"></div>
                     <div class="service-database" matTooltip="Database associated to this service"
                         (click)="showDatabase(service.service_id)">
-                        DB
+                        <img class="database-icon" [src]="'assets/icons/tech/database.png'">
                     </div>
                 </div>
             </div>
         </div>
-        <pre>{{configuration|json}}</pre>
         <!--<div class="queueing" matTooltip="Queues used by the system">-->
             <!--<div class="queues">-->
                 <!--<div *ngFor="let queue of ['profile-update', 'subscription-update', 'batch-request']">-->
