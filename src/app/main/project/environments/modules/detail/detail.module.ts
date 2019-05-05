@@ -22,6 +22,7 @@ import { DetailPageComponent } from './pages/detail-page/detail-page.component';
 import { EnvironmentActionsComponent } from './components/environment-actions/environment-actions.component';
 import { EnvironmentYmlComponent } from './components/environment-yml/environment-yml.component';
 import { ModalSubdomainEditorComponent } from './components/modal-subdomain-editor/modal-subdomain-editor.component';
+import { ModalServiceLinkEditorComponent } from './components/modal-service-link-editor/modal-service-link-editor.component';
 
 const routes: Routes = [
     {
@@ -37,6 +38,7 @@ const routes: Routes = [
         EnvironmentYmlComponent,
         DetailPageComponent,
         ModalSubdomainEditorComponent,
+        ModalServiceLinkEditorComponent,
     ],
     imports     : [
         RouterModule.forChild(routes),
@@ -63,7 +65,8 @@ const routes: Routes = [
         FuseWidgetModule
     ],
     entryComponents: [
-        ModalSubdomainEditorComponent
+        ModalSubdomainEditorComponent,
+        ModalServiceLinkEditorComponent
     ]
 })
 export class DetailModule

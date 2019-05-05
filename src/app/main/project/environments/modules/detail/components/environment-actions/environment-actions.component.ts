@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
-import { EnvironmentService } from '../../../../services/environment.service';
 import { ModalSubdomainEditorComponent } from '../modal-subdomain-editor/modal-subdomain-editor.component';
+import { ModalServiceLinkEditorComponent } from '../modal-service-link-editor/modal-service-link-editor.component';
+import { EnvironmentService } from '../../../../services/environment.service';
 
 @Component({
     selector: 'environment-actions',
@@ -11,8 +12,8 @@ export class EnvironmentActionsComponent {
     @Input() environmentId: string;
 
     constructor(
-        private environmentService: EnvironmentService,
         private dialog: MatDialog,
+        private environmentService: EnvironmentService,
         private snackBar: MatSnackBar
     ){}
 
@@ -21,7 +22,13 @@ export class EnvironmentActionsComponent {
     }
 
     save() {
-        alert('save configuration');
+        this.environmentService.saveConfiguration(this.environmentId).subscribe(() => {
+            this.snackBar.open("Configuration saved", undefined, {
+                duration: 2000
+            });
+        }, error1 => {
+            console.log('error', error1)
+        });
     }
 
     addDomain() {
@@ -34,7 +41,19 @@ export class EnvironmentActionsComponent {
     }
 
     addService() {
-        this.environmentService.addService(this.environmentId);
+        const dialogRef = this.dialog.open(ModalServiceLinkEditorComponent, {
+            width: '500px',
+            data: {
+                environmentId: this.environmentId
+            }
+        });
+
+        dialogRef.afterClosed().subscribe(serviceLink => {
+            if(serviceLink) {
+                console.log('service link', serviceLink);
+                this.environmentService.addService(this.environmentId, serviceLink);
+            }
+        });
         /*
             new service modal stepper :
             - blank service Vs distribution service

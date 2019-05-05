@@ -19,7 +19,7 @@
             </div>
             <div class="arrow"></div>
             <div class="services-container">
-                <div class="service" *ngFor="let service of services">
+                <div class="service" *ngFor="let service of configuration?.services">
                     <div class="arrow"></div>
                     <div class="path" matTooltip="Subpath for this service">
                         <span>
@@ -29,7 +29,7 @@
                             </div>
                         </span>
                     </div>
-                    <div class="service-compute" matTooltip="{{service.name}} API" (click)="updateService(service.service_id)">
+                    <div class="service-compute" matTooltip="{{service.name}} API" (click)="updateService(service)">
                         API
                     </div>
                     <div class="arrow"></div>
@@ -40,6 +40,7 @@
                 </div>
             </div>
         </div>
+        <pre>{{configuration|json}}</pre>
         <!--<div class="queueing" matTooltip="Queues used by the system">-->
             <!--<div class="queues">-->
                 <!--<div *ngFor="let queue of ['profile-update', 'subscription-update', 'batch-request']">-->

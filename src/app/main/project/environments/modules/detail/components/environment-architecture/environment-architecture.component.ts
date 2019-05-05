@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { EnvironmentService } from '../../../../services/environment.service';
 import { ModalSubdomainEditorComponent } from '../modal-subdomain-editor/modal-subdomain-editor.component';
+import { ModalServiceLinkEditorComponent } from '../modal-service-link-editor/modal-service-link-editor.component';
 
 @Component({
     selector     : 'environment-architecture',
@@ -19,6 +20,7 @@ export class EnvironemntArchitectureComponent implements OnInit
     environment: any;
     domains: any[] = [];
     services: any[] = [];
+    configuration: any = {services:[]};
 
     /**
      * Constructor
@@ -47,6 +49,8 @@ export class EnvironemntArchitectureComponent implements OnInit
                 this.services = environment.configuration.services;
             }
         });
+
+        this.environmentService.getEditableConfiguration(this.environmentId).subscribe(configuration => this.configuration = configuration);
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -72,8 +76,27 @@ export class EnvironemntArchitectureComponent implements OnInit
         alert('Rename service path ' + serviceId);
     }
 
-    updateService(serviceId) {
-        alert('Update service ' + serviceId + ' (repo, name, drop, ...)');
+    updateService(serviceLink) {
+        const dialogRef = this.dialog.open(ModalServiceLinkEditorComponent, {
+            width: '500px',
+            data: {
+                environmentId: this.environmentId,
+                initialValue: serviceLink
+            }
+        });
+
+        dialogRef.afterClosed().subscribe(data => {
+            if(data === 'remove') {
+                console.log('remove link', serviceLink);
+                this.environmentService.removeService(this.environmentId, serviceLink);
+            } else if(data) {
+                console.log('update link with', data);
+                // maybe cleaner to use environmentService in this case
+                for(let key in data) {
+                    serviceLink[key] = data[key];
+                }
+            }
+        });
     }
 
     showDatabase(serviceId) {

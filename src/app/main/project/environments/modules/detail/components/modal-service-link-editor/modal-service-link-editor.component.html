@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>
+    <span *ngIf="!isUpdate">New domain</span>
+    <span *ngIf="isUpdate">Edit domain</span>
+</h1>
+<div mat-dialog-content>
+    <form [formGroup]="serviceLinkFormGroup" (ngSubmit)="updateLink()">
+        <mat-form-field>
+            <input matInput formControlName="service_id" placeholder="service" />
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput formControlName="path" placeholder="path" />
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput formControlName="version" placeholder="version" />
+        </mat-form-field>
+        <input type="submit" style="display: none" [disabled]="serviceLinkFormGroup.invalid" name="submit" value="ok"/>
+    </form>
+    <div *ngIf="errorMessage">
+        <div>Server Error</div>
+        <pre>{{errorMessage}}</pre>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="cancel()">Cancel</button>
+    <button mat-button (click)="remove()" color="warn" *ngIf="isUpdate">Remove</button>
+    <button mat-button (click)="updateLink()" [disabled]="serviceLinkFormGroup.invalid">
+        Ok
+        <mat-spinner *ngIf="loading" [diameter]="20" style="display: inline-block; margin: -2px 0px 0 8px;"></mat-spinner>
+    </button>
+</div>

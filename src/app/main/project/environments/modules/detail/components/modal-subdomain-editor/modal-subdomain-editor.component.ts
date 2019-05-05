@@ -37,7 +37,7 @@ export class ModalSubdomainEditorComponent implements OnInit {
         }
     }
 
-    onNoClick(): void {
+    cancel(): void {
         this.dialogRef.close();
     }
 
