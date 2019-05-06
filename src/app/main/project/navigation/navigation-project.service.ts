@@ -24,6 +24,7 @@ export class NavigationProjectService {
         'project-dashboard-analytics': '/projects/:project_id/dashboards/analytics',
         'project-dashboard-project': '/projects/:project_id/dashboards/project',
         'environments-overview': '/projects/:project_id/environments/list',
+        'repositories-list': '/projects/:project_id/repositories/list',
         'team': '/projects/:project_id/team',
         'servers': '/projects/:project_id/servers',
         'all-projects': '/projects/:project_id/all-projects',

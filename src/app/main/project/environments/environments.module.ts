@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { EnvironmentService } from './services/environment.service';
+import { HttpClientModule } from '@angular/common/http';
 
 // import { FuseSharedModule } from '@fuse/shared.module';
 
@@ -19,6 +20,7 @@ const routes = [
 @NgModule({
     imports     : [
         RouterModule.forChild(routes),
+        HttpClientModule,
         // FuseSharedModule
     ],
     providers: [

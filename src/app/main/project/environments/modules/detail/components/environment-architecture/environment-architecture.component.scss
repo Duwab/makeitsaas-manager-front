@@ -146,8 +146,10 @@ span {
         .service-compute {
             display: block;
             position: relative;
-            background-image: url('/assets/icons/tech/gear-colored.png');
-            background-size: 100%;
+            border: 1px dashed;
+            border-radius: 10px;
+            //background-image: url('/assets/icons/tech/gear-colored.png');
+            //background-size: 100%;
             width: 100px;
             height: 100px;
             margin: 0 30px;

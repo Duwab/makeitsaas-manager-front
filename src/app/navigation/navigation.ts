@@ -38,9 +38,9 @@ export const navigation: FuseNavigation[] = [
             },
             {
                 id       : 'environments-details',
-                title    : 'Editor',
+                title    : 'Architecture',
                 type     : 'collapsable',
-                icon     : 'center_focus_strong',
+                icon     : 'cloud',
                 badge    : {
                     title    : '3',
                     bg       : '#555',
@@ -66,6 +66,12 @@ export const navigation: FuseNavigation[] = [
                         url      : '/projects/1/environments/3',
                     },
                 ]
+            },
+            {
+                id       : 'repositories-list',
+                title    : 'Services',
+                type     : 'item',
+                icon     : 'widgets',
             },
         ]
     },

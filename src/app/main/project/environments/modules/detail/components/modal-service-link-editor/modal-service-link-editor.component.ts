@@ -2,10 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
-const DOMAIN_PATTERN = "^([a-z1-9\-]+)(\\\.[a-z1-9\-]+)+\\\.([a-z1-9\-]+)$";
-
 @Component({
-    templateUrl: './modal-service-link-editor.component.html'
+    templateUrl: './modal-service-link-editor.component.html',
+    styleUrls: ['./modal-service-link-editor.component.scss']
 })
 export class ModalServiceLinkEditorComponent implements OnInit {
 

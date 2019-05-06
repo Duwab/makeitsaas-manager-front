@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { NavigationProjectService } from '../../services/navigation-project.service';
+import { NavigationProjectService } from '../../navigation/navigation-project.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'environments/environment';
 import { map } from 'rxjs/operators';

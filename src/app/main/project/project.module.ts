@@ -2,9 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { FuseSharedModule } from '@fuse/shared.module';
-import { NavigationProjectService } from './services/navigation-project.service';
+import { NavigationProjectService } from './navigation/navigation-project.service';
 import { TodoComponent } from './todo/todo.component';
-import { EnvironmentService } from './environments/services/environment.service';
 
 const routes = [
     {
@@ -18,6 +17,10 @@ const routes = [
     {
         path: 'projects/:project_id/environments',
         loadChildren: './environments/environments.module#EnvironmentsModule',
+    },
+    {
+        path: 'projects/:project_id/repositories',
+        loadChildren: './repositories/repositories.module#RepositoriesModule',
     },
     {
         path: 'projects/:project_id/workflows',
