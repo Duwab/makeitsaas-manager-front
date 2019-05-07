@@ -22,6 +22,6 @@ export class RepositoriesListPageComponent implements OnInit {
     }
 
     create() {
-        this.repositoryEditorService.createModal();
+        this.repositoryEditorService.launchCreateFormDialog();
     }
 }

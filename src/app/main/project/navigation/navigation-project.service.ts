@@ -56,6 +56,10 @@ export class NavigationProjectService {
 
     }
 
+    getCurrentProjectId(): string {
+        return this.currentProjectId;
+    }
+
     projectObservable(): Observable<Project> {
         return this.currentProjectSubject;
     }

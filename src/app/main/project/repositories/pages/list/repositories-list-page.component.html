@@ -14,41 +14,43 @@
 
     <!-- CONTENT -->
     <div class="content p-24">
-        <div class="card" *ngFor="let repository of repositories; let showDebug = false">
-            <div class="card-preview">
+        <div class="cards" fxLayout="row wrap" fxLayoutAlign="start start">
+            <div class="card" *ngFor="let repository of repositories; let showDebug = false">
+                <div class="card-preview">
 
-                <div class="fuse-card">
+                    <div class="fuse-card">
 
-                    <div class="p-16" fxLayout="row" fxLayoutAlign="space-between center">
+                        <div class="p-16" fxLayout="row" fxLayoutAlign="space-between center">
 
-                        <div class="pr-16">
-                            <div class="h4 secondary-text">{{repository.type}}</div>
-                            <div class="h1">{{repository.name}}</div>
+                            <div class="pr-16">
+                                <div class="h4 secondary-text">{{repository.type}}</div>
+                                <div class="h1">{{repository.name}}</div>
+                            </div>
+
+                            <div class="w-80 h-80 icon-type" [matTooltip]="repository.repository_url">
+                                <a [href]="repository.repository_url" target="_blank">
+                                    <img src="assets/icons/tech/gear-colored.png">
+                                    <mat-icon>open_in_new</mat-icon>
+                                </a>
+                            </div>
+
                         </div>
 
-                        <div class="w-80 h-80 icon-type" [matTooltip]="repository.repository_url">
-                            <a [href]="repository.repository_url" target="_blank">
-                                <img src="assets/icons/tech/gear-colored.png">
-                                <mat-icon>open_in_new</mat-icon>
-                            </a>
+                        <div class="p-16 pt-0 line-height-1.75">
+                            {{repository.description || '-'}}
                         </div>
 
+                        <div *ngIf="showDebug" class="p-16 pt-0 line-height-1.75">
+                            <pre>{{repository|json}}</pre>
+                        </div>
+
+                        <div class="p-8 pt-0" fxLayout="row" fxLayoutAlign="start center">
+                            <button mat-button color="accent">READ</button>
+                            <button mat-button color="accent" (click)="showDebug=!showDebug">DEBUG</button>
+                        </div>
                     </div>
 
-                    <div class="p-16 pt-0 line-height-1.75">
-                        {{repository.description || '-'}}
-                    </div>
-
-                    <div *ngIf="showDebug" class="p-16 pt-0 line-height-1.75">
-                        <pre>{{repository|json}}</pre>
-                    </div>
-
-                    <div class="p-8 pt-0" fxLayout="row" fxLayoutAlign="start center">
-                        <button mat-button color="accent">READ</button>
-                        <button mat-button color="accent" (click)="showDebug=!showDebug">DEBUG</button>
-                    </div>
                 </div>
-
             </div>
         </div>
     </div>

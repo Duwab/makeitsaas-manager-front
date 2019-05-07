@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 interface Service {
     id: string
@@ -43,5 +44,17 @@ export class RepositoriesService {
             this.services[projectId] = services;
             this.servicesSubjects[projectId].next(services);
         });
+    }
+
+    createRepository(projectId, options): Observable<any> {
+        console.log('launch request', projectId, options);
+
+        return this.httpClient.post(`${environment.apiBaseUrl}/services`, {
+            ...options,
+            project_id: projectId
+        }).pipe(map(responseBody => {
+            this.fetchProjectRepositories(projectId);
+            return responseBody;
+        }));
     }
 }

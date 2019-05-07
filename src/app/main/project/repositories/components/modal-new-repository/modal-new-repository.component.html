@@ -4,47 +4,120 @@
 <div mat-dialog-content>
     <mat-horizontal-stepper [linear]="true" labelPosition="bottom" #stepper>
 
+        <!-- STEP 0 -->
+        <mat-step [stepControl]="step0Form">
+            <ng-template matStepLabel>Front/Back</ng-template>
+
+            <div class="step-body">
+                <form [formGroup]="step0Form" fxLayout="column" fxLayoutAlign="start">
+
+                    <mat-form-field class="hidden-form-field" fxFlex="100">
+                        <mat-radio-group aria-label="Select type" formControlName="type">
+                            <mat-radio-button value="api">API</mat-radio-button>
+                            <mat-radio-button value="front" disabled matTooltip="Not available yet">Front</mat-radio-button>
+                            <mat-radio-button value="proxy" disabled matTooltip="Not available yet">Proxy</mat-radio-button>
+                        </mat-radio-group>
+                        <input matInput formControlName="type">
+                        <mat-error>
+                            <div *ngIf="step0Form.get('type')?.hasError('required')">
+                                Required
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                </form>
+            </div>
+
+            <!-- stepper controls -->
+            <button mat-raised-button style="float: right;" color="primary" matStepperNext [disabled]="step0Form.invalid">Next</button>
+        </mat-step>
+        <!-- END STEP 0 -->
+
+
         <!-- STEP 1 -->
         <mat-step [stepControl]="step1Form">
             <ng-template matStepLabel>Template</ng-template>
 
-            <!-- a custom layout that can trigger form changes -->
-            <ng-container *ngTemplateOutlet="step1CustomLayout"></ng-container>
+            <div class="step-body">
+                <form [formGroup]="step1Form" fxLayout="column" fxLayoutAlign="start">
+                    <!-- a custom layout that can trigger form changes -->
+                    <ng-container *ngTemplateOutlet="step1CustomLayout"></ng-container>
 
-            <!-- form partially hidden to use stepper native behavior -->
-            <form [formGroup]="step1Form" xLayout="column" fxLayoutAlign="start">
-                <mat-form-field class="hidden-form-field custom-layout" fxFlex="100">
-                    <mat-radio-group aria-label="Select an option" formControlName="template">
-                        <mat-radio-button value="custom">Custom</mat-radio-button>
-                        <mat-radio-button value="authentication">Authentication</mat-radio-button>
-                        <mat-radio-button value="payment">Payment</mat-radio-button>
-                        <mat-radio-button value="notification">Notification</mat-radio-button>
-                        <mat-radio-button value="machine-learning">Machine Learning</mat-radio-button>
-                    </mat-radio-group>
-                    <input matInput placeholder="Last name, First name" formControlName="template">
-                    <mat-error>
-                        <div *ngIf="step1Form.get('template')?.hasError('required')">
-                            Required
-                        </div>
-                    </mat-error>
-                </mat-form-field>
-            </form>
+
+                    <!-- partially hidden field to use stepper native behavior -->
+                    <mat-form-field class="hidden-form-field custom-layout" fxFlex="100">
+                        <mat-radio-group aria-label="Select an option" formControlName="template">
+                            <mat-radio-button value="custom">Custom</mat-radio-button>
+                            <mat-radio-button value="authentication">Authentication</mat-radio-button>
+                            <mat-radio-button value="payment">Payment</mat-radio-button>
+                            <mat-radio-button value="notification">Notification</mat-radio-button>
+                            <mat-radio-button value="machine-learning">Machine Learning</mat-radio-button>
+                        </mat-radio-group>
+                        <input matInput formControlName="template">
+                        <mat-error>
+                            <div *ngIf="step1Form.get('template')?.hasError('required')">
+                                Required
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                </form>
+            </div>
 
             <!-- stepper controls -->
             <button mat-raised-button style="float: right;" color="primary" matStepperNext [disabled]="step1Form.invalid">Next</button>
         </mat-step>
-        <!-- END  STEP 1 -->
+        <!-- END STEP 1 -->
+
+        <!-- STEP 2 -->
+        <mat-step [stepControl]="step2Form">
+            <ng-template matStepLabel>Settings</ng-template>
+
+            <div class="step-body">
+                <!-- form partially hidden to use stepper native behavior -->
+                <form [formGroup]="step2Form" fxLayout="column" fxLayoutAlign="start">
+                    <mat-form-field fxFlex="100">
+                        <input matInput placeholder="Service name" formControlName="name">
+                        <mat-error>
+                            <div>Required</div>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field fxFlex="100">
+                        <textarea matInput placeholder="Description" formControlName="description" rows="1"></textarea>
+                        <mat-error>
+                            <div>Required</div>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field fxFlex="100">
+                        <input matInput placeholder="Repository URL" formControlName="repository_url">
+                        <mat-error>
+                            <div>Required</div>
+                        </mat-error>
+                    </mat-form-field>
+                </form>
+            </div>
 
 
+            <!-- stepper controls -->
+            <button mat-button mat-raised-button matStepperPrevious>Previous</button>
+            <button mat-raised-button style="float: right;" color="primary" matStepperNext [disabled]="step2Form.invalid">Next</button>
+        </mat-step>
+        <!-- END STEP 2 -->
+
+
+        <!-- STEP 3 -->
         <mat-step>
             <ng-template matStepLabel>Confirm</ng-template>
-            <div style="min-height: 300px;">
-                Confirmation
-                <div>Template : <pre>{{step1Form.get('template').value}}</pre></div>
+            <div class="step-body">
+                <h3>Confirmation</h3>
+                <pre>{{getRecap()|json}}</pre>
+                <pre *ngIf="submitError">{{submitError|json}}</pre>
             </div>
-            <button mat-button mat-raised-button matStepperPrevious>Previous</button>
-            <button mat-button mat-raised-button style="float: right;" color="accent" matStepperNext>Save</button>
+            <button mat-button mat-raised-button matStepperPrevious [disabled]="loading">Previous</button>
+            <button mat-button mat-raised-button style="float: right;" color="accent" (click)="save()" [disabled]="loading">
+                Save
+                <mat-spinner *ngIf="loading" [diameter]="20" style="display: inline-block; margin: -2px 0px 0 8px;"></mat-spinner>
+            </button>
         </mat-step>
+        <!-- END STEP 3 -->
     </mat-horizontal-stepper>
 </div>
 
@@ -61,35 +134,35 @@
     <mat-grid-list [cols]="mobileView ? 2 : 4" rowHeight="1:1" (window:resize)="onResize($event)">
         <mat-grid-tile [colspan]="2" [rowspan]="2">
             <div class="tile-content">
-                <div class="click-zone" (click)="selectTemplate('custom')">
+                <div class="click-zone" [class.active]="step1Form.get('template').value==='custom'" (click)="selectTemplate('custom')">
                     Custom
                 </div>
             </div>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1">
             <div class="tile-content">
-                <div class="click-zone" (click)="selectTemplate('authentication')">
+                <div class="click-zone" [class.active]="step1Form.get('template').value==='authentication'" (click)="selectTemplate('authentication')">
                     Authentication
                 </div>
             </div>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1">
             <div class="tile-content">
-                <div class="click-zone" (click)="selectTemplate('payment')">
+                <div class="click-zone" [class.active]="step1Form.get('template').value==='payment'" (click)="selectTemplate('payment')">
                     Payment
                 </div>
             </div>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1">
             <div class="tile-content">
-                <div class="click-zone" (click)="selectTemplate('notificaitons')">
+                <div class="click-zone" [class.active]="step1Form.get('template').value==='notificaitons'" (click)="selectTemplate('notificaitons')">
                     Notifications
                 </div>
             </div>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1">
             <div class="tile-content">
-                <div class="click-zone" (click)="selectTemplate('machine-learning')">
+                <div class="click-zone" [class.active]="step1Form.get('template').value==='machine-learning'" (click)="selectTemplate('machine-learning')">
                     Machine learning
                 </div>
             </div>

@@ -4,7 +4,7 @@ import { RepositoriesListPageComponent } from './pages/list/repositories-list-pa
 import {
     MatButtonModule,
     MatDialogModule, MatFormFieldModule, MatGridListModule,
-    MatIconModule, MatInputModule, MatRadioModule,
+    MatIconModule, MatInputModule, MatProgressSpinnerModule, MatRadioModule,
     MatSnackBarModule, MatStepperModule,
     MatTooltipModule
 } from '@angular/material';
@@ -40,6 +40,7 @@ const routes = [
         MatRadioModule,
         MatFormFieldModule,
         MatInputModule,
+        MatProgressSpinnerModule,
         ReactiveFormsModule,
         FlexLayoutModule,
         // FuseSharedModule
