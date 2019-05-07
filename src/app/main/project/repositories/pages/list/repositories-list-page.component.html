@@ -26,7 +26,7 @@
                             <div class="h1">{{repository.name}}</div>
                         </div>
 
-                        <div class="w-80 h-80 icon-type">
+                        <div class="w-80 h-80 icon-type" [matTooltip]="repository.repository_url">
                             <a [href]="repository.repository_url" target="_blank">
                                 <img src="assets/icons/tech/gear-colored.png">
                                 <mat-icon>open_in_new</mat-icon>

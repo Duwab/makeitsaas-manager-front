@@ -3,14 +3,14 @@
     <span *ngIf="isUpdate">Edit domain</span>
 </h1>
 <div mat-dialog-content>
-    <form [formGroup]="serviceLinkFormGroup" (ngSubmit)="updateLink()">
-        <mat-form-field>
+    <form [formGroup]="serviceLinkFormGroup" (ngSubmit)="updateLink()" fxLayout="column" fxLayoutAlign="start">
+        <mat-form-field fxFlex="100">
             <input matInput formControlName="service_id" placeholder="service" />
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field fxFlex="100">
             <input matInput formControlName="path" placeholder="path" />
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field fxFlex="100">
             <input matInput formControlName="version" placeholder="version" />
         </mat-form-field>
         <input type="submit" style="display: none" [disabled]="serviceLinkFormGroup.invalid" name="submit" value="ok"/>

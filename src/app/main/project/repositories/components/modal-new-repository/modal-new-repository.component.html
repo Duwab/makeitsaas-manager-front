@@ -1,0 +1,103 @@
+<h1 mat-dialog-title>
+    New Service
+</h1>
+<div mat-dialog-content>
+    <mat-horizontal-stepper [linear]="true" labelPosition="bottom" #stepper>
+
+        <!-- STEP 1 -->
+        <mat-step [stepControl]="step1Form">
+            <ng-template matStepLabel>Template</ng-template>
+
+            <!-- a custom layout that can trigger form changes -->
+            <ng-container *ngTemplateOutlet="step1CustomLayout"></ng-container>
+
+            <!-- form partially hidden to use stepper native behavior -->
+            <form [formGroup]="step1Form" xLayout="column" fxLayoutAlign="start">
+                <mat-form-field class="hidden-form-field custom-layout" fxFlex="100">
+                    <mat-radio-group aria-label="Select an option" formControlName="template">
+                        <mat-radio-button value="custom">Custom</mat-radio-button>
+                        <mat-radio-button value="authentication">Authentication</mat-radio-button>
+                        <mat-radio-button value="payment">Payment</mat-radio-button>
+                        <mat-radio-button value="notification">Notification</mat-radio-button>
+                        <mat-radio-button value="machine-learning">Machine Learning</mat-radio-button>
+                    </mat-radio-group>
+                    <input matInput placeholder="Last name, First name" formControlName="template">
+                    <mat-error>
+                        <div *ngIf="step1Form.get('template')?.hasError('required')">
+                            Required
+                        </div>
+                    </mat-error>
+                </mat-form-field>
+            </form>
+
+            <!-- stepper controls -->
+            <button mat-raised-button style="float: right;" color="primary" matStepperNext [disabled]="step1Form.invalid">Next</button>
+        </mat-step>
+        <!-- END  STEP 1 -->
+
+
+        <mat-step>
+            <ng-template matStepLabel>Confirm</ng-template>
+            <div style="min-height: 300px;">
+                Confirmation
+                <div>Template : <pre>{{step1Form.get('template').value}}</pre></div>
+            </div>
+            <button mat-button mat-raised-button matStepperPrevious>Previous</button>
+            <button mat-button mat-raised-button style="float: right;" color="accent" matStepperNext>Save</button>
+        </mat-step>
+    </mat-horizontal-stepper>
+</div>
+
+
+<ng-template #step1CustomLayout>
+    <mat-grid-list *ngIf="!mobileView" [cols]="4" rowHeight="12px">
+        <mat-grid-tile [colspan]="2" [rowspan]="2">
+            <b>Code by yourself</b>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="2">
+            <b>Provided by @MIS</b>
+        </mat-grid-tile>
+    </mat-grid-list>
+    <mat-grid-list [cols]="mobileView ? 2 : 4" rowHeight="1:1" (window:resize)="onResize($event)">
+        <mat-grid-tile [colspan]="2" [rowspan]="2">
+            <div class="tile-content">
+                <div class="click-zone" (click)="selectTemplate('custom')">
+                    Custom
+                </div>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+            <div class="tile-content">
+                <div class="click-zone" (click)="selectTemplate('authentication')">
+                    Authentication
+                </div>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+            <div class="tile-content">
+                <div class="click-zone" (click)="selectTemplate('payment')">
+                    Payment
+                </div>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+            <div class="tile-content">
+                <div class="click-zone" (click)="selectTemplate('notificaitons')">
+                    Notifications
+                </div>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+            <div class="tile-content">
+                <div class="click-zone" (click)="selectTemplate('machine-learning')">
+                    Machine learning
+                </div>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</ng-template>
+
+
+
+
+

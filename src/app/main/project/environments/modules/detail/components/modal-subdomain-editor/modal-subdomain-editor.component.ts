@@ -6,7 +6,8 @@ import { EnvironmentService } from '../../../../services/environment.service';
 const DOMAIN_PATTERN = "^([a-z1-9\-]+)(\\\.[a-z1-9\-]+)+\\\.([a-z1-9\-]+)$";
 
 @Component({
-    templateUrl: './modal-subdomain-editor.component.html'
+    templateUrl: './modal-subdomain-editor.component.html',
+    styleUrls: ['./modal-subdomain-editor.component.scss']
 })
 export class ModalSubdomainEditorComponent implements OnInit {
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RepositoriesService } from '../../services/repositories.service';
+import { RepositoryEditorService } from '../../services/repository-editor.service';
 
 @Component({
     templateUrl: './repositories-list-page.component.html',
@@ -10,7 +11,8 @@ export class RepositoriesListPageComponent implements OnInit {
     public repositories: any[] = [];
 
     constructor(
-        private repositoriesService: RepositoriesService
+        private repositoriesService: RepositoriesService,
+        private repositoryEditorService: RepositoryEditorService
     ) {}
 
     ngOnInit() {
@@ -20,6 +22,6 @@ export class RepositoriesListPageComponent implements OnInit {
     }
 
     create() {
-        alert('create new repository')
+        this.repositoryEditorService.createModal();
     }
 }

@@ -1,6 +1,5 @@
 // Import Fuse core library
 @import "@fuse/scss/core";
-
 // Import app.theme.scss
 @import "app/app.theme";
 
@@ -10,8 +9,22 @@
 }
 
 pre, code {
-    background: rgba(0,0,0,.03);
+    background: rgba(0, 0, 0, .03);
 }
 
-pre {padding: 5px 10px; margin-right: 0; margin-left: 0;}
-code {padding: 1px 5px}
+pre {
+    padding: 5px 10px;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+code {
+    padding: 1px 5px
+}
+
+
+mat-form-field.hidden-form-field {
+    .mat-form-field-underline, .mat-form-field-ripple, .mat-input-element, .mat-form-field-label-wrapper {
+        display: none;
+    }
+}
