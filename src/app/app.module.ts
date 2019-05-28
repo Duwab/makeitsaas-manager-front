@@ -12,7 +12,7 @@ import { FuseModule } from '@fuse/fuse.module';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseProgressBarModule, FuseSidebarModule, FuseThemeOptionsModule } from '@fuse/components';
 
-import { fuseConfig } from 'app/fuse-config';
+import { fuseConfig } from '@core/config/fuse-config';
 
 import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
@@ -34,8 +34,8 @@ const appRoutes: Routes = [
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
-        // RouterModule.forRoot(appRoutes),
-        RouterModule.forRoot(appRoutes, {enableTracing: true}),
+        RouterModule.forRoot(appRoutes),
+        // RouterModule.forRoot(appRoutes, {enableTracing: true}),
 
         TranslateModule.forRoot(),
 
