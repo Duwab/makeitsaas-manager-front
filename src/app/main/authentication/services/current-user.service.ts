@@ -18,6 +18,7 @@ export class CurrentUserService {
 
   setUser(user: AuthenticatedUser) {
     this.currentUser = user;
+    console.log('user', user);
     this.currentUserSubject.next(this.currentUser);
   }
 

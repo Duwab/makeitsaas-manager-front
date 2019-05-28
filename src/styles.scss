@@ -4,6 +4,10 @@
 @import "app/app.theme";
 
 .mat-success {
+    color: green;
+}
+
+[mat-button].mat-success {
     background-color: green !important;
     color: #fff !important;
 }

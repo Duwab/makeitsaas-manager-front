@@ -1,18 +1,39 @@
-<div class="page-layout">
-    <div class="content">
-        Oauth Callback
+<!-- PENDING -->
+<div *ngIf="loading">
+    <mat-spinner [diameter]="40"></mat-spinner>
 
-        <div class="alert alert-success" *ngIf="successMessage">
-            {{successMessage}}
-        </div>
-        <div class="alert alert-danger" *ngIf="errorMessage">
-            {{errorMessage}}
-        </div>
+    <p>verification in progress...</p>
+</div>
 
-        <pre>Strategy={{strategy}}
-            Code={{providerCode}}
-</pre>
+<!-- SUCCESS -->
+<div *ngIf="!loading && successMessage">
+    <div class="logo">
+        <mat-icon class="s-96" color="success">done</mat-icon>
+    </div>
 
-        <mat-spinner *ngIf="loading" [diameter]="40" style="margin: 20px auto"></mat-spinner>
+    <div class="custom-message mat-success">
+        {{successMessage}}
+    </div>
+
+    <p>redirecting...</p>
+</div>
+
+<!-- FAILURE -->
+<div *ngIf="!loading && errorMessage">
+    <div class="logo">
+        <mat-icon class="s-96" color="warn">close</mat-icon>
+    </div>
+
+    <div class="custom-message mat-warn">
+        Authentication failed
+    </div>
+
+    <pre>{{errorMessage}}</pre>
+
+    <div class="message">
+        <a class="link" [routerLink]="'/login'">Go back to login page</a>
     </div>
 </div>
+
+
+

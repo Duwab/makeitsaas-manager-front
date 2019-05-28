@@ -79,10 +79,9 @@ export class LoginPageComponent {
         this.authService.login(
             this.loginForm.get('username').value,
             this.loginForm.get('password').value
-        ).subscribe(response => {
+        ).subscribe(() => {
             this.loading = false;
             this.loginForm.enable();
-            console.log('server response', response);
             this.errorMessage = '';
             this.redirectUser();
             // this.currentUserService.onUserJWT(response.token);
