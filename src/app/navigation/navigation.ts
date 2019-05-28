@@ -16,8 +16,8 @@ export const navigation: FuseNavigation[] = [
                 // url  : '/projects/2/dashboards/analytics'
             },
             {
-                id   : 'project-dashboard-project',
-                title: 'Project',
+                id   : 'project-dashboard-management',
+                title: 'Management',
                 type : 'item',
                 icon : 'bar_chart',
                 // url  : '/projects/1/dashboards/project'

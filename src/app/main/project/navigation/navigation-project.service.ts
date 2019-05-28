@@ -22,7 +22,7 @@ export class NavigationProjectService {
 
     private projectUrls = {
         'project-dashboard-analytics': '/projects/:project_id/dashboards/analytics',
-        'project-dashboard-project': '/projects/:project_id/dashboards/project',
+        'project-dashboard-management': '/projects/:project_id/dashboards/management',
         'environments-overview': '/projects/:project_id/environments/list',
         'repositories-list': '/projects/:project_id/repositories/list',
         'team': '/projects/:project_id/team',

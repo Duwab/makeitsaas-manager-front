@@ -84,6 +84,7 @@ $typography: mat-typography-config(
 
 @import "src/app/main/authentication/modules/login-2/login-2.theme";
 @import "src/app/main/authentication/pages/login/login-page.theme";
+@import "src/app/main/project/list/projects-list.theme";
 
 // Define a mixin for easier access
 @mixin components-theme($theme) {
@@ -95,6 +96,7 @@ $typography: mat-typography-config(
 
     @include login-2-theme($theme);
     @include login-page-theme($theme);
+    @include projects-list-theme($theme);
 }
 
 // -----------------------------------------------------------------------------------------------------

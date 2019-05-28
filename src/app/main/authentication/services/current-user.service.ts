@@ -16,6 +16,10 @@ export class CurrentUserService {
     return this.currentUserSubject.asObservable();
   }
 
+  getUser(): AuthenticatedUser {
+      return this.currentUser;
+  }
+
   setUser(user: AuthenticatedUser) {
     this.currentUser = user;
     console.log('user', user);

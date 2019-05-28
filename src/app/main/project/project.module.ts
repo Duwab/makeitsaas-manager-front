@@ -6,6 +6,7 @@ import { NavigationProjectService } from './navigation/navigation-project.servic
 import { TodoComponent } from './todo/todo.component';
 import { AuthenticatedGuard } from '@core/guards/authenticated.guard';
 import { SingleProjectPageComponent } from './pages/single-project/single-project-page.component';
+import { ProjectsService } from './services/projects.service';
 
 const routes = [
     {
@@ -23,7 +24,7 @@ const routes = [
                 loadChildren: './dashboards/analytics/analytics.module#AnalyticsDashboardModule'
             },
             {
-                path: 'dashboards/project',
+                path: 'dashboards/management',
                 loadChildren: './dashboards/project/project.module#ProjectDashboardModule'
             },
             {
@@ -56,7 +57,7 @@ const routes = [
             },
             {
                 path: '**',
-                redirectTo: 'dashboards/analytics'
+                redirectTo: 'dashboards/management'
             }
         ]
     }
@@ -73,6 +74,7 @@ const routes = [
     ],
     providers: [
         NavigationProjectService,
+        ProjectsService
         // EnvironmentService
     ],
     exports: []

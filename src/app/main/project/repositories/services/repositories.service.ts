@@ -3,30 +3,19 @@ import { environment } from 'environments/environment';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
-interface Service {
-    id: string
-    project_id: string
-    name: string
-    description: string
-    type: string
-    repository_url: string
-    position: number
-    createdAt: Date
-    updatedAt: Date
-}
+import { Repository } from '../../../models';
 
 @Injectable()
 export class RepositoriesService {
 
-    private servicesSubjects: {[id: string]: BehaviorSubject<Service[]>} = {};
-    private services: {[id: string]: Service[]} = {};
+    private servicesSubjects: {[id: string]: BehaviorSubject<Repository[]>} = {};
+    private services: {[id: string]: Repository[]} = {};
 
     constructor(
         private httpClient: HttpClient
     ) {}
 
-    getProjectRepositories(): Observable<Service[]> {
+    getProjectRepositories(): Observable<Repository[]> {
         const projectId = 1;
         if(!this.servicesSubjects[projectId]) {
             this.fetchProjectRepositories(projectId);
@@ -40,7 +29,7 @@ export class RepositoriesService {
             this.servicesSubjects[projectId] = new BehaviorSubject([]);
         }
 
-        this.httpClient.get(`${environment.apiBaseUrl}/projects/${projectId}/services`).subscribe(({services}: {services: Service[]}) => {
+        this.httpClient.get(`${environment.apiBaseUrl}/projects/${projectId}/services`).subscribe(({services}: {services: Repository[]}) => {
             this.services[projectId] = services;
             this.servicesSubjects[projectId].next(services);
         });

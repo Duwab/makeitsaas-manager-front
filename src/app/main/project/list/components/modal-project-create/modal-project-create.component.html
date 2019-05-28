@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>
+    <span>New project</span>
+</h1>
+<div mat-dialog-content>
+    <form [formGroup]="projectFormGroup" (ngSubmit)="createProject()" fxLayout="column" fxLayoutAlign="start">
+        <mat-form-field fxFlex="100">
+            <input matInput formControlName="name" placeholder="Project Name" />
+        </mat-form-field>
+        <input type="submit" style="display: none" [disabled]="projectFormGroup.invalid" name="submit" value="ok"/>
+    </form>
+    <div *ngIf="errorMessage">
+        <div>Server Error</div>
+        <pre>{{errorMessage}}</pre>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="cancel()" style="float: right">Cancel</button>
+    <button mat-button mat-raised-button color="primary" (click)="createProject()" [disabled]="projectFormGroup.invalid" style="float: right">
+        Ok
+        <mat-spinner *ngIf="loading" [diameter]="20" style="display: inline-block; margin: -2px 0px 0 8px;"></mat-spinner>
+    </button>
+</div>
