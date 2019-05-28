@@ -51,11 +51,19 @@
 
             <div class="toolbar-separator"></div>
 
-            <button mat-button [matMenuTriggerFor]="userMenu"
+            <button *ngIf="!currentUser" mat-button class="user-button">
+                <div routerLink="/login" fxLayout="row" fxLayoutAlign="center center">
+                    <!--<img class="avatar mr-0 mr-sm-16" src="assets/images/avatars/profile.jpg">-->
+                    <mat-icon class="s-16" fxHide.xs>exit_to_app</mat-icon>
+                    <span class="username mr-12" fxHide fxShow.gt-sm>Sign in</span>
+                </div>
+            </button>
+
+            <button *ngIf="currentUser" mat-button [matMenuTriggerFor]="userMenu"
                     class="user-button">
                 <div fxLayout="row" fxLayoutAlign="center center">
                     <img class="avatar mr-0 mr-sm-16" src="assets/images/avatars/profile.jpg">
-                    <span class="username mr-12" fxHide fxShow.gt-sm>Username</span>
+                    <span class="username mr-12" fxHide fxShow.gt-sm>{{currentUser.username || '-'}}</span>
                     <mat-icon class="s-16" fxHide.xs>keyboard_arrow_down</mat-icon>
                 </div>
             </button>
@@ -64,7 +72,7 @@
 
                 <button mat-menu-item>
                     <mat-icon>account_circle</mat-icon>
-                    <span>My Profile</span>
+                    <span>Profile</span>
                 </button>
 
                 <button mat-menu-item class="">

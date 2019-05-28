@@ -120,9 +120,10 @@ export const navigation: FuseNavigation[] = [
                 id   : 'all-projects',
                 title: 'Back to projects',
                 type : 'item',
+                exactMatch: true,
                 // icon : 'navigate_before',
                 icon : 'undo',
-                // url  : '/projects/:project_id/todo'
+                url  : '/projects'
             },
         ]
     },

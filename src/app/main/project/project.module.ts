@@ -4,47 +4,61 @@ import { RouterModule } from '@angular/router';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { NavigationProjectService } from './navigation/navigation-project.service';
 import { TodoComponent } from './todo/todo.component';
+import { AuthenticatedGuard } from '@core/guards/authenticated.guard';
+import { SingleProjectPageComponent } from './pages/single-project/single-project-page.component';
 
 const routes = [
     {
-        path: 'projects/:project_id/dashboards/analytics',
-        loadChildren: './dashboards/analytics/analytics.module#AnalyticsDashboardModule'
-    },
-    {
-        path: 'projects/:project_id/dashboards/project',
-        loadChildren: './dashboards/project/project.module#ProjectDashboardModule'
-    },
-    {
-        path: 'projects/:project_id/environments',
-        loadChildren: './environments/environments.module#EnvironmentsModule',
-    },
-    {
-        path: 'projects/:project_id/repositories',
-        loadChildren: './repositories/repositories.module#RepositoriesModule',
-    },
-    {
-        path: 'projects/:project_id/workflows',
-        loadChildren: './workflows/workflows.module#WorkflowsModule',
-    },
-    {
-        path: 'projects/:project_id/todo',
-        component: TodoComponent
-    },
-    {
-        path: 'projects/:project_id/team',
-        component: TodoComponent
-    },
-    {
-        path: 'projects/:project_id/servers',
-        component: TodoComponent
-    },
-    {
-        path: 'projects/:project_id/all-projects',
-        component: TodoComponent
+        path: 'projects',
+        canActivate: [AuthenticatedGuard],
+        loadChildren: './list/projects-list.module#ProjectsListModule'
     },
     {
         path: 'projects/:project_id',
-        redirectTo: 'projects/:project_id/dashboards/analytics'
+        component: SingleProjectPageComponent,
+        canActivate: [AuthenticatedGuard],
+        children: [
+            {
+                path: 'dashboards/analytics',
+                loadChildren: './dashboards/analytics/analytics.module#AnalyticsDashboardModule'
+            },
+            {
+                path: 'dashboards/project',
+                loadChildren: './dashboards/project/project.module#ProjectDashboardModule'
+            },
+            {
+                path: 'environments',
+                loadChildren: './environments/environments.module#EnvironmentsModule',
+            },
+            {
+                path: 'repositories',
+                loadChildren: './repositories/repositories.module#RepositoriesModule',
+            },
+            {
+                path: 'workflows',
+                loadChildren: './workflows/workflows.module#WorkflowsModule',
+            },
+            {
+                path: 'todo',
+                component: TodoComponent
+            },
+            {
+                path: 'team',
+                component: TodoComponent
+            },
+            {
+                path: 'servers',
+                component: TodoComponent
+            },
+            {
+                path: 'all-projects',
+                component: TodoComponent
+            },
+            {
+                path: '**',
+                redirectTo: 'dashboards/analytics'
+            }
+        ]
     }
 ];
 
@@ -54,6 +68,7 @@ const routes = [
         FuseSharedModule
     ],
     declarations: [
+        SingleProjectPageComponent,
         TodoComponent
     ],
     providers: [

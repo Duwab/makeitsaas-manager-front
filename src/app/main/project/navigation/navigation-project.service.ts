@@ -27,7 +27,6 @@ export class NavigationProjectService {
         'repositories-list': '/projects/:project_id/repositories/list',
         'team': '/projects/:project_id/team',
         'servers': '/projects/:project_id/servers',
-        'all-projects': '/projects/:project_id/all-projects',
         'workflow-global': '/projects/:project_id/workflows/list',
         'workflow-operations': '/projects/:project_id/workflows/operations',
     };
