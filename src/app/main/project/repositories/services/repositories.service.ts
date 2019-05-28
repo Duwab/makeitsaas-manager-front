@@ -4,6 +4,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Repository } from '../../../models';
+import { NavigationProjectService } from '../../navigation/navigation-project.service';
 
 @Injectable()
 export class RepositoriesService {
@@ -12,11 +13,12 @@ export class RepositoriesService {
     private services: {[id: string]: Repository[]} = {};
 
     constructor(
-        private httpClient: HttpClient
+        private httpClient: HttpClient,
+        private navigationProjectService: NavigationProjectService
     ) {}
 
     getProjectRepositories(): Observable<Repository[]> {
-        const projectId = 1;
+        const projectId = this.navigationProjectService.getCurrentProjectId();
         if(!this.servicesSubjects[projectId]) {
             this.fetchProjectRepositories(projectId);
         }
@@ -36,8 +38,6 @@ export class RepositoriesService {
     }
 
     createRepository(projectId, options): Observable<any> {
-        console.log('launch request', projectId, options);
-
         return this.httpClient.post(`${environment.apiBaseUrl}/services`, {
             ...options,
             project_id: projectId

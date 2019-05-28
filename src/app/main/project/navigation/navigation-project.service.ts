@@ -88,7 +88,6 @@ export class NavigationProjectService {
 
     refreshEnvironmentsList() {
         if(this.currentProjectId) {
-
             this.httpClient
                 .get(`${environment.apiBaseUrl}/projects/${this.currentProjectId}/environments`)
                 .subscribe((response: any) => {

@@ -189,5 +189,5 @@ export class AppComponent implements OnInit, OnDestroy
     // @ Private methods
     // -----------------------------------------------------------------------------------------------------
 
-    onProjectChange(project) {}
+    private onProjectChange(project) {}
 }

@@ -4,8 +4,7 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/r
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class ListService implements Resolve<any>
-{
+export class ListService implements Resolve<any> {
 
     /**
      * Constructor
@@ -14,8 +13,7 @@ export class ListService implements Resolve<any>
      */
     constructor(
         private _httpClient: HttpClient
-    )
-    {
+    ) {
     }
 
     /**
@@ -25,11 +23,8 @@ export class ListService implements Resolve<any>
      * @param {RouterStateSnapshot} state
      * @returns {Observable<any> | Promise<any> | any}
      */
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any
-    {
-
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
         return new Promise((resolve, reject) => {
-
             Promise.all([]).then(
                 () => {
                     resolve();

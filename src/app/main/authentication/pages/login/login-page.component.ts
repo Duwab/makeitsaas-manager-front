@@ -61,7 +61,6 @@ export class LoginPageComponent {
         });
 
         this.route.queryParams.subscribe(params => {
-            console.log(params); // {order: "popular"}
             this.redirectPath = params.redirect;
         });
     }

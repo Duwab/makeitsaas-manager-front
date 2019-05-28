@@ -27,7 +27,7 @@ export class EnvironmentActionsComponent {
                 duration: 2000
             });
         }, error1 => {
-            console.log('error', error1)
+            console.error(error1)
         });
     }
 
@@ -50,7 +50,6 @@ export class EnvironmentActionsComponent {
 
         dialogRef.afterClosed().subscribe(serviceLink => {
             if(serviceLink) {
-                console.log('service link', serviceLink);
                 this.environmentService.addService(this.environmentId, serviceLink);
             }
         });

@@ -77,7 +77,7 @@ export class ModalNewRepositoryComponent implements OnInit {
             this.loading = true;
             this.submitError = null;
             this.repositoriesService.createRepository(this.data.project_id, this.getRecap()).subscribe(
-                () => (console.log('success'), this.dialogRef.close()),
+                () => this.dialogRef.close(),
                 error => (console.log('error', error), this.loading = false, this.submitError=error)
             );
         }

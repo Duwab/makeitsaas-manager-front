@@ -91,7 +91,6 @@ export class EnvironemntArchitectureComponent implements OnInit
 
         dialogRef.afterClosed().subscribe(data => {
             if(data === 'remove') {
-                console.log('remove link', serviceLink);
                 this.environmentService.removeService(this.environmentId, serviceLink);
             } else if(data) {
                 console.log('update link with', data);

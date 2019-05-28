@@ -116,7 +116,6 @@ export class EnvironmentService {
 
     removeService(environmentId: string, serviceLink: any): void {
         let filteredServices = this.editableConfigurations[environmentId].services.filter(link => {
-            console.log('link', serviceLink.path, link.path);
             return serviceLink.path !== link.path;
         });
 
