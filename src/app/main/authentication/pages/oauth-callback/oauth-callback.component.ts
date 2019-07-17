@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { FuseConfigService } from '@fuse/services/config.service';
-import { throttle } from 'rxjs/operators';
+import { delay, throttle } from 'rxjs/operators';
 import { interval } from 'rxjs';
 
 @Component({
@@ -63,7 +63,8 @@ export class OauthCallbackComponent implements OnInit {
             this.loading = true;
             this.authService
                 .sendAuthorizationCode(this.providerCode, this.strategy)
-                .pipe(throttle(() => interval(2000)))
+                .pipe(delay(1000))
+                // .pipe(throttle(() => interval(2000)))
                 .subscribe(() => {
                     this.loading = false;
                     this.successMessage = 'Successfully signed in !';
