@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {environment} from 'environments/environment';
 
 @Component({
     selector: 'environment-yml',
@@ -15,7 +16,7 @@ export class EnvironmentYmlComponent {
 
     ngOnInit() {
         this.httpClient
-            .get(`http://localhost:3000/environments/${this.environmentId}/deployment-order`)
+            .get(`${environment.apiBaseUrl}/environments/${this.environmentId}/deployment-order`)
             .subscribe(({order}: any) => {
                 this.order = order;
             })
