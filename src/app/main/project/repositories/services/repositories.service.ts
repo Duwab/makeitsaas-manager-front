@@ -31,6 +31,7 @@ export class RepositoriesService {
             this.servicesSubjects[projectId] = new BehaviorSubject([]);
         }
 
+        console.log('service environment', environment);
         this.httpClient.get(`${environment.apiBaseUrl}/projects/${projectId}/services`).subscribe(({services}: {services: Repository[]}) => {
             this.services[projectId] = services;
             this.servicesSubjects[projectId].next(services);

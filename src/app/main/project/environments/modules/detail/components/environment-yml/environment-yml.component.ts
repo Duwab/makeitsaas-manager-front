@@ -15,6 +15,7 @@ export class EnvironmentYmlComponent {
     ) {}
 
     ngOnInit() {
+        console.log('deploy environment', environment);
         this.httpClient
             .get(`${environment.apiBaseUrl}/environments/${this.environmentId}/deployment-order`)
             .subscribe(({order}: any) => {
